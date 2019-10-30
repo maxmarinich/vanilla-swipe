@@ -1,7 +1,7 @@
 {
   "name": "vanilla-swipe",
   "version": "0.1.0",
-  "description": "",
+  "description": "Tiny vanilla JS library to detect swipe direction.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -17,7 +17,13 @@
     "type": "git",
     "url": "https://github.com/maxmarinich/vanilla-swipe"
   },
-  "keywords": [],
+  "keywords": [
+    "swipe",
+    "touch",
+    "touchable",
+    "swipeable",
+    "drag and drop"
+  ],
   "author": "Max Marinich",
   "maintainers": [
     {

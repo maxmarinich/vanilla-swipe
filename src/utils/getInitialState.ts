@@ -1,8 +1,8 @@
 export const getInitialState = () => {
   return {
-    x: null,
-    y: null,
-    start: null,
+    x: 0,
+    y: 0,
+    start: 0,
     isSwiping: false,
   };
 };

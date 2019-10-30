@@ -25,14 +25,17 @@ export default class VanillaSwipe {
   }
 
   update(nextProps: ConstructorProps) {
-    this.props = Object.assign({}, this.props, nextProps);
+    const prevProps = Object.assign({}, this.props);
+    const { mouseTrackingEnabled, touchTrackingEnabled } = nextProps;
 
-    if (!this.props.mouseTrackingEnabled) {
-      this.cleanupMouseListeners();
+    this.props = Object.assign({}, prevProps, nextProps);
+
+    if (prevProps.mouseTrackingEnabled !== mouseTrackingEnabled) {
+      mouseTrackingEnabled ? this.setupMouseListeners() : this.cleanupMouseListeners();
     }
 
-    if (!this.props.touchTrackingEnabled) {
-      this.cleanupTouchListeners();
+    if (prevProps.touchTrackingEnabled !== touchTrackingEnabled) {
+      touchTrackingEnabled ? this.setupTouchListeners() : this.cleanupTouchListeners();
     }
   }
 
@@ -134,14 +137,18 @@ export default class VanillaSwipe {
 
     if (this.state.isSwiping) {
       const position = this.getPosition(e);
-      const { deltaX, deltaY, duration } = position;
+      const { deltaX, deltaY, absX, absY, duration } = position;
 
-      onSwiped && onSwiped(e, deltaX, deltaY, duration);
+      onSwiped && onSwiped(e, deltaX, deltaY, absX, absY, duration);
     } else {
       onTap && onTap(e);
     }
 
     this.state = Utils.getInitialState();
+  }
+
+  handleMouseDown(e: MouseEvent) {
+    this.handleSwipeStart(e);
   }
 
   handleMouseMove(e: MouseEvent) {
@@ -150,9 +157,5 @@ export default class VanillaSwipe {
 
   handleMouseUp(e: MouseEvent) {
     this.handleSwipeEnd(e);
-  }
-
-  handleMouseDown(e: MouseEvent) {
-    this.handleSwipeStart(e);
   }
 }

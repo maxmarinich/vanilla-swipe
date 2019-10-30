@@ -1,4 +1,4 @@
-export function rotateByAngle(position: { x: number; y: number }, angle: number) {
+export function rotateByAngle(position: { x: number; y: number }, angle: number): Value {
   if (angle === 0) {
     return position;
   }
@@ -11,3 +11,8 @@ export function rotateByAngle(position: { x: number; y: number }, angle: number)
 
   return { x: rotatedX, y: rotatedY };
 }
+
+type Value = {
+  x: number;
+  y: number;
+};
