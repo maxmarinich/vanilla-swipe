@@ -50,7 +50,7 @@ const VS = new VanillaSwipe({
 VS.init();
 
 function handler() {
-  console.log(arguments); // -> Event, deltaX, deltaY, absX, absY, duration
+  console.log(...arguments); // -> Event, deltaX, deltaY, absX, absY, duration
 }
 ```
 

@@ -24,18 +24,26 @@ export default class VanillaSwipe {
     this.setupMouseListeners();
   }
 
-  update(nextProps: ConstructorProps) {
-    const prevProps = Object.assign({}, this.props);
-    const { mouseTrackingEnabled, touchTrackingEnabled } = nextProps;
+  update(props: ConstructorProps) {
+    const prevProps = this.props;
+    const nextProps = Object.assign({}, prevProps, props);
 
-    this.props = Object.assign({}, prevProps, nextProps);
+    if (prevProps.element !== nextProps.element) {
+      this.destroy();
+      this.props = nextProps;
+      this.init();
 
-    if (prevProps.mouseTrackingEnabled !== mouseTrackingEnabled) {
-      mouseTrackingEnabled ? this.setupMouseListeners() : this.cleanupMouseListeners();
+      return;
     }
 
-    if (prevProps.touchTrackingEnabled !== touchTrackingEnabled) {
-      touchTrackingEnabled ? this.setupTouchListeners() : this.cleanupTouchListeners();
+    this.props = nextProps;
+
+    if (prevProps.mouseTrackingEnabled !== nextProps.mouseTrackingEnabled) {
+      nextProps.mouseTrackingEnabled ? this.setupMouseListeners() : this.cleanupMouseListeners();
+    }
+
+    if (prevProps.touchTrackingEnabled !== nextProps.touchTrackingEnabled) {
+      nextProps.touchTrackingEnabled ? this.setupTouchListeners() : this.cleanupTouchListeners();
     }
   }
 
