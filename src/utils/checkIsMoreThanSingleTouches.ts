@@ -1,3 +1,3 @@
-export const checkIsMoreThanSingleTouches = (e: any) => {
-  return e.touches && e.touches.length > 1;
+export const checkIsMoreThanSingleTouches = (e: any): boolean => {
+  return Boolean(e.touches && e.touches.length > 1);
 };

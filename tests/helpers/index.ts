@@ -12,11 +12,11 @@ export function createStartTouchEventObject(x: number = 0, y: number = 0, preven
 export function createMoveTouchEventObject(
   x: number = 0,
   y: number = 0,
-  includeTouches: boolean = true,
+  touchesCount: number = 0,
   preventDefault: Function = noop,
 ) {
   const position = createClientXYObject(x, y);
-  const touches = includeTouches ? { touches: [position] } : {};
+  const touches = touchesCount ? { touches: repeat(position, touchesCount) } : {};
 
   return {
     ...createClientXYObject(x, y),
@@ -38,3 +38,6 @@ export function createTouches(x: number, y: number, create: boolean) {
 }
 
 export function noop() {}
+export function repeat(data: any, count = 0) {
+  return Array(count).fill(data);
+}
