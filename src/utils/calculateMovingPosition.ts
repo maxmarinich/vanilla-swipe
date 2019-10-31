@@ -1,12 +1,19 @@
-export function calculateMovingPosition(e: TouchEvent | MouseEvent) {
+export function calculateMovingPosition<T extends E>(e: TouchEvent | MouseEvent | T) {
   if ('changedTouches' in e) {
-    const touches = e.changedTouches[0];
+    const touches = e.changedTouches && e.changedTouches[0];
 
     return {
-      x: touches.clientX,
-      y: touches.clientY,
+      x: touches && touches.clientX,
+      y: touches && touches.clientY,
     };
   }
 
-  return { x: e.clientX, y: e.clientY };
+  return { x: e.clientX, y: e.clientX };
 }
+
+type E = {
+  clientX: number;
+  clientY: number;
+  changedTouches?: { clientX: number; clientY: number }[];
+  preventDefault?: Function;
+};
