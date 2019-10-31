@@ -7,8 +7,8 @@ export interface State {
 
 export interface ConstructorProps {
   element: HTMLElement | null;
-  rotationAngle: number | 0;
-  delta: number | 10;
+  delta?: number | 10;
+  rotationAngle?: number | 0;
   stopPropagation?: boolean | false;
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;

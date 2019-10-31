@@ -1,9 +1,8 @@
-function checkIsPassiveSupported() {
-  let passiveSupported = false;
+export function checkIsPassiveSupported(isPassiveSupported = false) {
   try {
     const options = Object.defineProperty({}, 'passive', {
       get: function() {
-        passiveSupported = true;
+        isPassiveSupported = true;
       },
     });
 
@@ -11,9 +10,7 @@ function checkIsPassiveSupported() {
     window.removeEventListener('test', noop, options);
   } catch (err) {}
 
-  return passiveSupported;
+  return isPassiveSupported;
 }
 
 function noop() {}
-
-export { checkIsPassiveSupported };

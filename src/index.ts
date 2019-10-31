@@ -124,7 +124,7 @@ export default class VanillaSwipe {
     if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
 
     const { absX, absY, deltaX, deltaY, duration } = this.getPosition(e);
-    const { delta, onSwiping, stopPropagation, preventDefaultTouchmoveEvent } = this.props;
+    const { delta = 0, onSwiping, stopPropagation, preventDefaultTouchmoveEvent } = this.props;
 
     if (stopPropagation) e.stopPropagation();
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();

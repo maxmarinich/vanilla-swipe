@@ -1,4 +1,4 @@
-export function rotateByAngle(position: { x: number; y: number }, angle: number): Value {
+export function rotateByAngle(position: { x: number; y: number }, angle: number = 0): Value {
   if (angle === 0) {
     return position;
   }
