@@ -17,6 +17,7 @@ export default class VanillaSwipe {
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
   init() {
@@ -84,6 +85,7 @@ export default class VanillaSwipe {
       element.addEventListener('mousedown', this.handleMouseDown);
       element.addEventListener('mousemove', this.handleMouseMove);
       element.addEventListener('mouseup', this.handleMouseUp);
+      element.addEventListener('mouseleave', this.handleMouseLeave);
     }
   }
 
@@ -94,6 +96,7 @@ export default class VanillaSwipe {
       element.removeEventListener('mousedown', this.handleMouseDown);
       element.removeEventListener('mousemove', this.handleMouseMove);
       element.removeEventListener('mouseup', this.handleMouseUp);
+      element.removeEventListener('mouseleave', this.handleMouseLeave);
     }
   }
 
@@ -165,5 +168,14 @@ export default class VanillaSwipe {
 
   handleMouseUp(e: MouseEvent) {
     this.handleSwipeEnd(e);
+  }
+
+  handleMouseLeave() {
+    const { element } = this.props;
+    const { isSwiping } = this.state;
+
+    if (element && isSwiping) {
+      element.dispatchEvent(new Event('mouseup', { bubbles: true, cancelable: true }));
+    }
   }
 }
