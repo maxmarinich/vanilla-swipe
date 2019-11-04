@@ -9,7 +9,6 @@ export interface ConstructorProps {
   element: HTMLElement | null;
   delta?: number | 10;
   rotationAngle?: number | 0;
-  stopPropagation?: boolean | false;
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
   preventDefaultTouchmoveEvent?: boolean | false;

@@ -60,7 +60,7 @@ export default class VanillaSwipe {
     const { element, touchTrackingEnabled } = this.props;
 
     if (element && touchTrackingEnabled) {
-      const options = this.isPassiveSupported ? { passive: false } : false;
+      const options = this.isPassiveSupported ? { passive: false } : {};
 
       element.addEventListener('touchstart', this.handleSwipeStart, options);
       element.addEventListener('touchmove', this.handleSwipeMove, options);
@@ -116,8 +116,6 @@ export default class VanillaSwipe {
     const movingPosition = Utils.calculateMovingPosition(e);
     const { x, y } = Utils.rotateByAngle(movingPosition, rotationAngle);
 
-    if (this.props.stopPropagation) e.stopPropagation();
-
     this.state = { start: Date.now(), x, y, isSwiping: false };
   }
 
@@ -127,9 +125,8 @@ export default class VanillaSwipe {
     if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
 
     const { absX, absY, deltaX, deltaY, duration } = this.getPosition(e);
-    const { delta = 0, onSwiping, stopPropagation, preventDefaultTouchmoveEvent } = this.props;
+    const { delta = 0, onSwiping, preventDefaultTouchmoveEvent } = this.props;
 
-    if (stopPropagation) e.stopPropagation();
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
 
     if (absX < delta && absY < delta) return;
@@ -142,9 +139,7 @@ export default class VanillaSwipe {
   }
 
   handleSwipeEnd(e: any) {
-    const { stopPropagation, onSwiped, onTap } = this.props;
-
-    if (stopPropagation) e.stopPropagation();
+    const { onSwiped, onTap } = this.props;
 
     if (this.state.isSwiping) {
       const position = this.getPosition(e);

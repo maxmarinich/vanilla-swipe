@@ -12,7 +12,6 @@ type ConstructorProps = {
   element: HTMLElement | null;
   rotationAngle: number | 0;
   delta: number | 10; // minimum distance to the start of the swiping (px)
-  stopPropagation?: boolean | false;
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
   preventDefaultTouchmoveEvent?: boolean | false; // stop the browser scrolling while swiping
