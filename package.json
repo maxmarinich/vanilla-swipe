@@ -1,6 +1,6 @@
 {
   "name": "vanilla-swipe",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Tiny vanilla JS library to detect swipe direction.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,7 +9,7 @@
     "testWithCoverage": "jest --coverage",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "build": "npm run build:types && npm run build:js",
+    "build": "rimraf lib && npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\"",
     "prepare": "npm run build",
@@ -49,6 +49,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@types/jest": "^24.0.18",
     "jest": "24.9.0",
+    "rimraf": "^3.0.0",
     "ts-jest": "^24.0.2",
     "typescript": "^2.9.2"
   },

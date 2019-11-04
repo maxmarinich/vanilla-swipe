@@ -15,7 +15,7 @@ type ConstructorProps = {
   stopPropagation?: boolean | false;
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
-  preventDefaultTouchmoveEvent?: boolean | false;
+  preventDefaultTouchmoveEvent?: boolean | false; // stop the browser scrolling while swiping
   onSwiping?: EventHandler;
   onSwiped?: EventHandler;
   onTap?: (e: Event) => void;
