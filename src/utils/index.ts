@@ -5,3 +5,4 @@ export * from './calculatePosition';
 export * from './calculateMovingPosition';
 export * from './rotateByAngle';
 export * from './checkIsMoreThanSingleTouches';
+export * from './createOptions';

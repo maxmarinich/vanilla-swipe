@@ -41,3 +41,7 @@ export function noop() {}
 export function repeat(data: any, count = 0) {
   return Array(count).fill(data);
 }
+
+export function createCustomEvent(eventName: string, options: any = {}) {
+  return new CustomEvent(eventName, { detail: { bubbles: true, cancelable: true, ...options } });
+}

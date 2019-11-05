@@ -1,14 +1,14 @@
 export function calculateMovingPosition<T extends E>(e: TouchEvent | MouseEvent | T) {
   if ('changedTouches' in e) {
-    const touches = e.changedTouches && e.changedTouches[0];
+    const touches: any = e.changedTouches && e.changedTouches[0];
 
     return {
-      x: (touches && touches.clientX) || 0,
-      y: (touches && touches.clientY) || 0,
+      x: touches && touches.clientX,
+      y: touches && touches.clientY,
     };
   }
 
-  return { x: e.clientX, y: e.clientX };
+  return { x: e.clientX, y: e.clientY };
 }
 
 type E = {

@@ -1,16 +1,14 @@
-export function checkIsPassiveSupported(isPassiveSupported = false) {
-  try {
-    const options = Object.defineProperty({}, 'passive', {
-      get: function() {
-        isPassiveSupported = true;
-      },
-    });
+import { createOptions } from './createOptions';
 
-    window.addEventListener('test', noop, options);
-    window.removeEventListener('test', noop, options);
+export function checkIsPassiveSupported(isPassiveSupported = false) {
+  let proxy = { isPassiveSupported };
+
+  try {
+    const options = createOptions(proxy);
+
+    window.addEventListener('checkIsPassiveSupported', console.log, options);
+    window.removeEventListener('checkIsPassiveSupported', console.log, options);
   } catch (err) {}
 
-  return isPassiveSupported;
+  return proxy.isPassiveSupported;
 }
-
-function noop() {}

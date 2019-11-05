@@ -1,4 +1,3 @@
-import * as Helpers from '../helpers';
 import { getInitialProps } from '../../src/utils';
 
 describe('checkIsPassiveSupported', () => {

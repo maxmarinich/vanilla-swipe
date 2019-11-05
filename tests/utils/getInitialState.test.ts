@@ -1,4 +1,3 @@
-import * as Helpers from '../helpers';
 import { getInitialState } from '../../src/utils';
 
 describe('getInitialState', () => {

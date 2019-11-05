@@ -1,4 +1,6 @@
 {
+  "collectCoverage": false,
+  "collectCoverageFrom": ["src/**/*.{ts,tsx}", "!<rootDir>tests/helpers/"],
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
