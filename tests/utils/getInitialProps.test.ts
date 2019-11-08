@@ -5,7 +5,6 @@ describe('checkIsPassiveSupported', () => {
     element: null,
     delta: 10,
     rotationAngle: 0,
-    stopPropagation: false,
     mouseTrackingEnabled: false,
     touchTrackingEnabled: true,
     preventDefaultTouchmoveEvent: false,

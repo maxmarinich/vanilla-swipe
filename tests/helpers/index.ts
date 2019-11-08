@@ -2,17 +2,18 @@ export function createClientXYObject(clientX: number, clientY: number) {
   return { clientX, clientY };
 }
 
-export function createStartTouchEventObject(x: number = 0, y: number = 0, preventDefault: Function = noop) {
+export function createTouchStartEventObject(x: number = 0, y: number = 0, preventDefault: Function = noop) {
   return {
     preventDefault,
     touches: [createClientXYObject(x, y)],
   };
 }
 
-export function createMoveTouchEventObject(
+export function createTouchMoveEventObject(
   x: number = 0,
   y: number = 0,
   touchesCount: number = 0,
+  cancelable: boolean = true,
   preventDefault: Function = noop,
 ) {
   const position = createClientXYObject(x, y);
@@ -23,6 +24,7 @@ export function createMoveTouchEventObject(
     changedTouches: [position],
     preventDefault,
     ...touches,
+    cancelable,
   };
 }
 
@@ -42,6 +44,6 @@ export function repeat(data: any, count = 0) {
   return Array(count).fill(data);
 }
 
-export function createCustomEvent(eventName: string, options: any = {}) {
-  return new CustomEvent(eventName, { detail: { bubbles: true, cancelable: true, ...options } });
+export function createEvent(eventName: string, options: any = {}) {
+  return new MouseEvent(eventName, { bubbles: true, cancelable: true, ...options });
 }

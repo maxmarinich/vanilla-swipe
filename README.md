@@ -2,8 +2,9 @@
 
 Tiny vanilla JS library to detect swipe direction.
 
-[![npm version](https://badge.fury.io/js/vanilla-swipe.svg)](https://badge.fury.io/js/vanilla-swipe)
 [![Build Status](https://travis-ci.com/maxmarinich/vanilla-swipe.svg?branch=master)](https://travis-ci.com/maxmarinich/vanilla-swipe)
+[![npm version](https://badge.fury.io/js/vanilla-swipe.svg)](https://img.shields.io/badge/coverage-100%25-brightgreen)
+![covarage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
 ### Types
 
@@ -60,4 +61,10 @@ function handler() {
 
 ```
 npm test
+```
+
+### _Coverage_
+
+```
+npm run testWithCoverage
 ```

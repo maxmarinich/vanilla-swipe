@@ -1,4 +1,3 @@
-import * as Helpers from '../helpers';
 import { calculatePosition } from '../../src/utils';
 
 const prevPos = { x: 1, y: 1, start: 1 };

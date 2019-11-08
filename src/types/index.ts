@@ -6,7 +6,7 @@ export interface State {
 }
 
 export interface ConstructorProps {
-  element: HTMLElement | null;
+  element?: HTMLElement | null;
   delta?: number | 10;
   rotationAngle?: number | 0;
   mouseTrackingEnabled?: boolean | false;
