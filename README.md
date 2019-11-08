@@ -4,15 +4,15 @@ Tiny vanilla JS library to detect swipe direction.
 
 [![Build Status](https://travis-ci.com/maxmarinich/vanilla-swipe.svg?branch=master)](https://travis-ci.com/maxmarinich/vanilla-swipe)
 [![npm version](https://badge.fury.io/js/vanilla-swipe.svg)](https://img.shields.io/badge/coverage-100%25-brightgreen)
-![covarage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+[![covarage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
 ### Types
 
 ```typescript
 type ConstructorProps = {
-  element: HTMLElement | null;
-  rotationAngle: number | 0;
-  delta: number | 10; // minimum distance to the start of the swiping (px)
+  element?: HTMLElement | null;
+  rotationAngle?: number | 0;
+  delta?: number | 10; // minimum distance to the start of the swiping (px)
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
   preventDefaultTouchmoveEvent?: boolean | false; // stop the browser scrolling while swiping
