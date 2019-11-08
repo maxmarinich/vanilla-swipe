@@ -4,12 +4,10 @@ import * as Utils from './utils';
 export default class VanillaSwipe {
   state: State;
   props: ConstructorProps;
-  isPassiveSupported: boolean;
 
   constructor(props: ConstructorProps) {
     this.state = Utils.getInitialState();
     this.props = Utils.getInitialProps(props);
-    this.isPassiveSupported = Utils.checkIsPassiveSupported();
 
     this.handleSwipeStart = this.handleSwipeStart.bind(this);
     this.handleSwipeMove = this.handleSwipeMove.bind(this);
@@ -60,7 +58,8 @@ export default class VanillaSwipe {
     const { element, touchTrackingEnabled } = this.props;
 
     if (element && touchTrackingEnabled) {
-      const options = this.isPassiveSupported ? { passive: false } : {};
+      const isPassiveSupported = Utils.checkIsPassiveSupported();
+      const options = Utils.getOptions(isPassiveSupported);
 
       element.addEventListener('touchstart', this.handleSwipeStart, options);
       element.addEventListener('touchmove', this.handleSwipeMove, options);
@@ -125,11 +124,11 @@ export default class VanillaSwipe {
     if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
 
     const { absX, absY, deltaX, deltaY, duration } = this.getPosition(e);
-    const { delta = 0, onSwiping, preventDefaultTouchmoveEvent } = this.props;
+    const { delta, onSwiping, preventDefaultTouchmoveEvent } = this.props;
 
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
 
-    if (absX < delta && absY < delta) return;
+    if (absX < Number(delta) && absY < Number(delta)) return;
 
     this.state.isSwiping = true;
 

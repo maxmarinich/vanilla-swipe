@@ -6,9 +6,11 @@ export function checkIsPassiveSupported(isPassiveSupported = false) {
   try {
     const options = createOptions(proxy);
 
-    window.addEventListener('checkIsPassiveSupported', console.log, options);
-    window.removeEventListener('checkIsPassiveSupported', console.log, options);
+    window.addEventListener('checkIsPassiveSupported', noop, options);
+    window.removeEventListener('checkIsPassiveSupported', noop, options);
   } catch (err) {}
 
   return proxy.isPassiveSupported;
 }
+
+export const noop = () => {};

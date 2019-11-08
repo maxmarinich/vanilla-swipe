@@ -1,4 +1,4 @@
-import { checkIsPassiveSupported } from '../../src/utils';
+import { checkIsPassiveSupported, noop } from '../../src/utils';
 
 describe('checkIsPassiveSupported', () => {
   it('should return expected data if no params', () => {
@@ -11,5 +11,11 @@ describe('checkIsPassiveSupported', () => {
 
   it('should return expected data if PassiveEvent support', () => {
     expect(checkIsPassiveSupported(true)).toEqual(true);
+  });
+});
+
+describe('noop', () => {
+  it('should return expected data', () => {
+    expect(noop()).toBe(undefined);
   });
 });
