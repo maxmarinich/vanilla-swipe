@@ -22,7 +22,15 @@ type ConstructorProps = {
 };
 
 type EventHandler = {
-  (e: Event, deltaX: number, deltaY: number, absX: number, absY: number, duration: number): void;
+  (
+    e: Event,
+    deltaX: number,
+    deltaY: number,
+    absX: number,
+    absY: number,
+    duration: number,
+    velocity: number
+  ): void;
 };
 ```
 
@@ -53,7 +61,7 @@ const VS = new VanillaSwipe({
 VS.init();
 
 function handler() {
-  console.log(...arguments); // -> Event, deltaX, deltaY, absX, absY, duration
+  console.log(...arguments); // -> Event, deltaX, deltaY, absX, absY, duration, velocity
 }
 ```
 

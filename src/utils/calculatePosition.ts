@@ -1,12 +1,19 @@
-export function calculatePosition(prevPos: prevPosition, nextPos: nextPosition): Value {
+import { calculateDuration } from "./calculateDuration";
+import { calculateVelocity } from "./calculateVelocity";
+
+export function calculatePosition(
+  prevPos: prevPosition,
+  nextPos: nextPosition
+): Value {
   const deltaX = prevPos.x - nextPos.x;
   const deltaY = prevPos.y - nextPos.y;
 
   const absX = Math.abs(deltaX);
   const absY = Math.abs(deltaY);
-  const duration = Date.now() - prevPos.start;
+  const duration = calculateDuration(prevPos.start, Date.now());
+  const velocity = calculateVelocity(absX, absY, duration);
 
-  return { deltaX, deltaY, absX, absY, duration };
+  return { deltaX, deltaY, absX, absY, duration, velocity };
 }
 
 type Value = {
@@ -15,6 +22,7 @@ type Value = {
   absX: number;
   absY: number;
   duration: number;
+  velocity: number;
 };
 
 type prevPosition = {
