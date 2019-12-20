@@ -28,8 +28,8 @@ type EventHandler = {
     deltaY: number,
     absX: number,
     absY: number,
-    duration: number,
-    velocity: number
+    duration: number, // ms
+    velocity: number // (px/ms)
   ): void;
 };
 ```
