@@ -126,7 +126,9 @@ export default class VanillaSwipe {
     const { absX, absY, deltaX, deltaY, duration } = this.getPosition(e);
     const { delta, onSwiping, preventDefaultTouchmoveEvent } = this.props;
 
-    if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
+    if (e.cancelable && preventDefaultTouchmoveEvent && !Utils.isVerticalTouchMoveDetected(deltaX, deltaY)) {
+      e.preventDefault();
+    }
 
     if (absX < Number(delta) && absY < Number(delta)) return;
 

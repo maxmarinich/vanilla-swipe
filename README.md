@@ -15,7 +15,7 @@ type ConstructorProps = {
   delta?: number | 10; // minimum distance to the start of the swiping (px)
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
-  preventDefaultTouchmoveEvent?: boolean | false; // stop the browser scrolling while swiping
+  preventDefaultTouchmoveEvent?: boolean | false; // stop the browser scrolling vertically while swiping horizontally
   onSwiping?: EventHandler;
   onSwiped?: EventHandler;
   onTap?: (e: Event) => void;
