@@ -24,6 +24,7 @@ describe('VanillaSwipe: update', function() {
       delta: 100,
       rotationAngle: 10,
       preventDefaultTouchmoveEvent: true,
+      preventTrackingOnMouseleave: false,
     });
   });
 

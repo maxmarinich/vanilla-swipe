@@ -1,6 +1,6 @@
 import { getInitialProps } from '../../src/utils';
 
-describe('checkIsPassiveSupported', () => {
+describe('getInitialProps', () => {
   const defaultProps = {
     element: null,
     delta: 10,
@@ -8,10 +8,18 @@ describe('checkIsPassiveSupported', () => {
     mouseTrackingEnabled: false,
     touchTrackingEnabled: true,
     preventDefaultTouchmoveEvent: false,
+    preventTrackingOnMouseleave: false,
   };
 
   it('should return expected data if props are passed', () => {
-    expect(getInitialProps({ delta: 0 })).toEqual({ ...defaultProps, delta: 0 });
+    expect(getInitialProps({
+      delta: 0,
+      preventTrackingOnMouseleave: true,
+    })).toEqual({
+      ...defaultProps,
+      delta: 0,
+      preventTrackingOnMouseleave: true,
+    });
   });
 
   it('should return expected data if props are not passed', () => {
