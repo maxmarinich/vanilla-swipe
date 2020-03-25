@@ -69,4 +69,3 @@ npm-debug.log
 # Dist folder
 dist
 lib
-package-lock.json

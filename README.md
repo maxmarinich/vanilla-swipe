@@ -16,6 +16,7 @@ type ConstructorProps = {
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
   preventDefaultTouchmoveEvent?: boolean | false; // stop the browser scrolling while swiping
+  preventTrackingOnMouseleave?: boolean | false; // fired onSwiped or onTap handlers when the cursor leaves the element's borders
   onSwiping?: EventHandler;
   onSwiped?: EventHandler;
   onTap?: (e: Event) => void;
@@ -52,7 +53,7 @@ npm install vanilla-swipe
 import VanillaSwipe from 'vanilla-swipe';
 
 const VS = new VanillaSwipe({
-  element: document.getElementById('some-id');
+  element: document.getElementById('some-id'),
   onSwiping: handler,
   onSwiped: handler,
   mouseTrackingEnabled: true,

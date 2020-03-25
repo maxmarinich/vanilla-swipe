@@ -78,24 +78,24 @@ export default class VanillaSwipe {
   }
 
   setupMouseListeners() {
-    const { element, mouseTrackingEnabled } = this.props;
+    const { element, mouseTrackingEnabled, preventTrackingOnMouseleave } = this.props;
 
     if (element && mouseTrackingEnabled) {
       element.addEventListener('mousedown', this.handleMouseDown);
       element.addEventListener('mousemove', this.handleMouseMove);
       element.addEventListener('mouseup', this.handleMouseUp);
-      element.addEventListener('mouseleave', this.handleMouseLeave);
+      preventTrackingOnMouseleave && element.addEventListener('mouseleave', this.handleMouseLeave);
     }
   }
 
   cleanupMouseListeners() {
-    const { element } = this.props;
+    const { element, preventTrackingOnMouseleave } = this.props;
 
     if (element) {
       element.removeEventListener('mousedown', this.handleMouseDown);
       element.removeEventListener('mousemove', this.handleMouseMove);
       element.removeEventListener('mouseup', this.handleMouseUp);
-      element.removeEventListener('mouseleave', this.handleMouseLeave);
+      preventTrackingOnMouseleave && element.removeEventListener('mouseleave', this.handleMouseLeave);
     }
   }
 
@@ -128,7 +128,7 @@ export default class VanillaSwipe {
 
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
 
-    if (absX < Number(delta) && absY < Number(delta)) return;
+    if ((absX < Number(delta) && absY < Number(delta)) && !this.state.isSwiping) return;
 
     this.state.isSwiping = true;
 
