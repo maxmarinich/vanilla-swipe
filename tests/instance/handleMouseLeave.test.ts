@@ -87,6 +87,31 @@ describe('VanillaSwipe: handleMouseLeave', function() {
     element && element.dispatchEvent(mousemove);
     element && element.dispatchEvent(mouseleave);
 
+    expect(onSwiped).toHaveBeenCalledTimes(0);
+  });
+
+  it('should have expected behavior if preventTrackingOnMouseleave true', function() {
+    document.body.innerHTML = '<div id="root">Root</div>';
+
+    const onSwiped = jest.fn();
+    const element = document.getElementById('root');
+    const VanillaSwipe = new VS({
+      element,
+      onSwiped,
+      mouseTrackingEnabled: true,
+      preventTrackingOnMouseleave: true,
+    });
+
+    const mousedown = Helpers.createEvent('mousedown', Helpers.createMouseEventObject(1.5, 1.5));
+    const mousemove = Helpers.createEvent('mousemove', Helpers.createMouseEventObject(1000, 1000));
+    const mouseleave = Helpers.createEvent('mouseleave', {});
+
+    VanillaSwipe.init();
+
+    element && element.dispatchEvent(mousedown);
+    element && element.dispatchEvent(mousemove);
+    element && element.dispatchEvent(mouseleave);
+
     expect(onSwiped).toHaveBeenCalledTimes(1);
   });
 });
