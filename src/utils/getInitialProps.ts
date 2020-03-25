@@ -6,6 +6,7 @@ export const getInitialProps = (props = {}) => {
     mouseTrackingEnabled: false,
     touchTrackingEnabled: true,
     preventDefaultTouchmoveEvent: false,
+    preventTrackingOnMouseleave: false,
     ...props,
   };
 };
