@@ -83,6 +83,12 @@ function handler() {
 }
 ```
 
+### Run project
+```$xslt
+npm i
+npm start
+```
+
 ### _Tests_
 
 ```
