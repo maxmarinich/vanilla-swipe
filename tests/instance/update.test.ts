@@ -98,4 +98,35 @@ describe('VanillaSwipe: update', function() {
     expect(VanillaSwipe.props.touchTrackingEnabled).toEqual(false);
     expect(VanillaSwipe.state.start === 0).toBe(true);
   });
+
+  it('should update data if target updated', function() {
+    document.body.innerHTML = `
+      <div>
+        <div id="root">Root</div>
+        <div id="target">Target</div>
+      </div>
+    `;
+    const onSwiping = jest.fn();
+    const element = document.getElementById('root');
+    const target = document.getElementById('target');
+
+    const VanillaSwipe = new VS({ element, mouseTrackingEnabled: true, onSwiping });
+
+    const mouseDownEventObject: any = Helpers.createMouseEventObject(1, 1);
+    const mouseMoveEventObject: any = Helpers.createMouseEventObject(1000, 1000);
+
+    VanillaSwipe.handleMouseDown(mouseDownEventObject);
+    VanillaSwipe.handleSwipeMove(mouseMoveEventObject);
+
+    expect(VanillaSwipe.state.isSwiping).toBe(true);
+    expect(onSwiping).toHaveBeenCalledTimes(1);
+
+    VanillaSwipe.update({ element, target, mouseTrackingEnabled: true, onSwiping });
+
+    VanillaSwipe.handleMouseDown(mouseDownEventObject);
+    VanillaSwipe.handleSwipeMove(mouseMoveEventObject);
+
+    expect(VanillaSwipe.state.isSwiping).toBe(false);
+    expect(onSwiping).toHaveBeenCalledTimes(1);
+  });
 });
