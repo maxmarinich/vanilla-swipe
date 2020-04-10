@@ -2,7 +2,7 @@ import VanillaSwipe, { EventData } from './lib';
 
 if (module.hot) module.hot.accept();
 
-const element = document.getElementById('root');
+const element = document.getElementById('pad');
 const target = document.getElementById('stick');
 const shadow = document.getElementById('shadow');
 const info = document.getElementById('info');
