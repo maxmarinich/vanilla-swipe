@@ -28,7 +28,7 @@ export default class VanillaSwipe {
     const prevProps = this.props;
     const nextProps = Object.assign({}, prevProps, props);
 
-    if (prevProps.element !== nextProps.element) {
+    if (prevProps.element !== nextProps.element || prevProps.target !== nextProps.target) {
       this.destroy();
       this.props = nextProps;
       this.init();
@@ -38,11 +38,18 @@ export default class VanillaSwipe {
 
     this.props = nextProps;
 
-    if (prevProps.mouseTrackingEnabled !== nextProps.mouseTrackingEnabled) {
+    if (
+      prevProps.mouseTrackingEnabled !== nextProps.mouseTrackingEnabled ||
+      prevProps.preventTrackingOnMouseleave !== nextProps.preventTrackingOnMouseleave
+    ) {
+      this.cleanupMouseListeners();
       nextProps.mouseTrackingEnabled ? this.setupMouseListeners() : this.cleanupMouseListeners();
     }
 
-    if (prevProps.touchTrackingEnabled !== nextProps.touchTrackingEnabled) {
+    if (
+      prevProps.touchTrackingEnabled !== nextProps.touchTrackingEnabled
+    ) {
+      this.cleanupTouchListeners();
       nextProps.touchTrackingEnabled ? this.setupTouchListeners() : this.cleanupTouchListeners();
     }
   }
@@ -89,7 +96,7 @@ export default class VanillaSwipe {
       element.addEventListener('mouseup', this.handleMouseUp);
 
       if (preventTrackingOnMouseleave) {
-        element.addEventListener('mouseleave', this.handleMouseLeave)
+        element.addEventListener('mouseleave', this.handleMouseLeave);
       }
     }
   }
@@ -101,7 +108,7 @@ export default class VanillaSwipe {
       element.removeEventListener('mousedown', this.handleMouseDown);
       element.removeEventListener('mousemove', this.handleMouseMove);
       element.removeEventListener('mouseup', this.handleMouseUp);
-      element.removeEventListener('mouseleave', this.handleMouseLeave)
+      element.removeEventListener('mouseleave', this.handleMouseLeave);
     }
   }
 
