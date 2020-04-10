@@ -1,72 +1,82 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><title>Vanilla Swipe Playground</title><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet"/><style>html, body, #root {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
-        h2 {
-            color: cadetblue;
-            text-align: center;
-            padding: 20px;
-            user-select: none;
-            margin: 0;
-        }
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><title>Vanilla Swipe Demo Page</title><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet"/><style>html,
+      body,
+      #root {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+      h2 {
+        color: cadetblue;
+        text-align: center;
+        padding: 20px;
+        user-select: none;
+        margin: 0;
+      }
+      #logo {
+        display: inline-block;
+        margin: 0;
+        padding: 0 6px 0 0;
+        width: 20px;
+        line-height: 20px;
+        outline: none;
+      }
+      #root {
+        padding: 20px;
+        box-sizing: border-box;
+      }
 
-        #root {
-            padding: 20px;
-            box-sizing: border-box;
-        }
+      #pad {
+        position: relative;
+        margin: 40px auto;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 400px;
+        max-height: 400px;
+        background-color: #b1e9ea;
+        overflow: hidden;
+      }
 
-        #pad {
-            position: relative;
-            margin: 40px auto;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            max-width: 400px;
-            max-height: 400px;
-            background-color: #b1e9ea;
-        }
+      #stick {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-radius: calc(40px / 2);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
 
-        #stick {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: #fff;
-            border-radius: calc(40px / 2);
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-        }
+      #info {
+        margin: auto;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 400px;
+        max-height: 400px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #3c5858;
+      }
 
-        #info {
-            margin: auto;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            max-width: 400px;
-            max-height: 400px;
-            font-weight: bold;
-            font-size: 14px;
-            color: #3c5858;
-        }
-
-        #shadow {
-            position: absolute;
-            display: none;
-            pointer-events: none;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            opacity: 0.4;
-            width: 40px;
-            height: 40px;
-            background-color: palevioletred;
-            border-radius: calc(40px/ 2);
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-        }</style></head><body><div id="root"><h2>Vanilla Swipe Playground</h2><div id="pad"><div id="stick"></div><div id="shadow"></div></div><h3 id="info"><br/>EventType: none<br/>Listener: none<br/>DeltaX: 0<br/>DeltaY: 0<br/>AbsX: 0<br/>AbsY: 0<br/>Duration: 0<br/>Velocity: 0<br/></h3></div><script src="main.js"></script></body></html>
+      #shadow {
+        position: absolute;
+        display: none;
+        pointer-events: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        opacity: 0.4;
+        width: 40px;
+        height: 40px;
+        background-color: palevioletred;
+        border-radius: calc(40px / 2);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }</style></head><body><div id="root"><h2><a href="https://github.com/maxmarinich/vanilla-swipe" id="logo"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="home-icon" x="0px" y="0px" viewBox="0 0 511.999 511.999" xml:space="preserve"><path style="fill:#BDBCBC;" d="M51.307,36.877v116.509c0,4.427,3.589,8.017,8.017,8.017h85.511c4.427,0,8.017-3.589,8.017-8.017  V36.877H51.307z"/><path style="fill:#A7A6A6;" d="M127.329,36.877v124.526h17.505c4.427,0,8.017-3.589,8.017-8.017V36.877H127.329z"/><path style="fill:#E9E9E9;" d="M161.937,0H42.221c-4.427,0-8.017,3.589-8.017,8.017v34.205c0,4.427,3.589,8.017,8.017,8.017h119.716  c4.427,0,8.017-3.589,8.017-8.017V8.017C169.954,3.59,166.364,0,161.937,0z"/><path style="fill:#b1e9ea;" d="M508.827,189.755L260.845,1.63c-2.865-2.173-6.826-2.173-9.689,0L3.172,189.755  c-2.743,2.08-3.851,5.68-2.753,8.942c1.098,3.263,4.156,5.461,7.598,5.461h39.015v299.824c0,4.427,3.589,8.017,8.017,8.017h401.903  c4.427,0,8.017-3.589,8.017-8.017V204.158h39.015c3.443,0,6.501-2.198,7.598-5.461C512.679,195.435,511.57,191.835,508.827,189.755z  "/><path style="fill:cadetblue;" d="M3.172,189.755c-2.743,2.08-3.851,5.68-2.753,8.942c1.098,3.263,4.156,5.461,7.598,5.461h39.015  v299.824c0,4.427,3.589,8.017,8.017,8.017h25.653v-381.06L3.172,189.755z"/><path style="fill:#FFD791;" d="M418.761,371.44c0-13.159-9.91-23.997-22.671-25.475h-2.982c14.168,0,25.653-11.485,25.653-25.653  s-11.485-25.653-25.653-25.653v-0.178c14.002,0,25.384-11.218,25.649-25.156c0.273-14.38-11.844-26.15-26.226-26.15h-98.784  c-4.427,0-8.017-3.589-8.017-8.017v-53.979c0-17.71-14.356-32.067-32.067-32.067h-19.774c-4.427,0-8.017,3.589-8.017,8.017v67.49  c0,0.961-0.173,1.914-0.511,2.814l-13.572,36.193c-1.174,3.129-4.164,5.202-7.506,5.202h-46.82v153.92h52.376v9.62  c0,8.855,7.179,16.033,16.033,16.033h166.656c14.382,0,26.499-11.77,26.226-26.149c-0.264-13.939-11.647-25.157-25.649-25.157  C407.274,397.093,418.761,385.608,418.761,371.44z"/><g><rect x="157.458" y="268.826" style="fill:#F8BE73;" width="43.49" height="153.92"/><path style="fill:#F8BE73;" d="M418.398,316.036c-2.036,12.132-12.582,21.378-25.292,21.378l-25.939-0.019   c-2.362-0.002-4.279,1.913-4.279,4.276l0,0c0,2.36,1.912,4.273,4.272,4.276l25.945,0.019c14.168,0,25.653-11.485,25.653-25.653   C418.761,318.854,418.632,317.427,418.398,316.036z"/><path style="fill:#F8BE73;" d="M418.391,367.206c-2.053,12.112-12.588,21.336-25.285,21.336h-25.942   c-2.361,0-4.276,1.914-4.276,4.276l0,0c0,2.361,1.914,4.276,4.276,4.276h25.942c14.168,0,25.653-11.485,25.653-25.653   C418.761,369.996,418.621,368.586,418.391,367.206z"/><path style="fill:#F8BE73;" d="M418.392,418.391c-2.098,12.161-13.082,21.458-25.863,21.458H211.696   c2.689,5.084,8.024,8.551,14.176,8.551h166.657c14.382,0,26.499-11.77,26.226-26.149   C418.731,420.938,418.607,419.649,418.392,418.391z"/></g><path style="fill:#F8BE73;" d="M418.375,264.536c-2.103,12.053-12.614,21.215-25.269,21.215v0.178l-25.85-0.019  c-2.411-0.002-4.367,1.953-4.367,4.364l0,0c0,2.409,1.952,4.363,4.361,4.364l25.856,0.019v-0.178  c14.002,0,25.384-11.218,25.649-25.156C418.786,267.688,418.649,266.09,418.375,264.536z"/><path style="fill:#FBFBFB;" d="M178.751,235.156H93.239c-4.427,0-8.017,3.588-8.017,8.017V448.4c0,4.428,3.589,8.017,8.017,8.017  h85.511c4.427,0,8.017-3.588,8.017-8.017V243.173C186.767,238.746,183.178,235.156,178.751,235.156z"/><path style="fill:#FF8C78;" d="M136.572,380.526c-13.851,0-25.119,11.268-25.119,25.119c0,13.851,11.268,25.119,25.119,25.119  s25.119-11.268,25.119-25.119C161.691,391.794,150.423,380.526,136.572,380.526z"/><path style="fill:#DF7A6E;" d="M136.572,389.323c-9,0-16.322,7.322-16.322,16.322c0,9,7.322,16.322,16.322,16.322  s16.322-7.322,16.322-16.322C152.894,396.644,145.572,389.323,136.572,389.323z"/><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg> </a>Vanilla Swipe Playground</h2><div id="pad"><div id="stick"></div><div id="shadow"></div></div><h3 id="info"><br/>EventType: none<br/>Listener: none<br/>DeltaX: 0<br/>DeltaY: 0<br/>AbsX: 0<br/>AbsY: 0<br/>Duration: 0<br/>Velocity: 0<br/></h3></div><script src="main.js"></script></body></html>
