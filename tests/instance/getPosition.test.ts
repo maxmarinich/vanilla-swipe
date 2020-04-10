@@ -1,4 +1,4 @@
-import VS from "../../src";
+import VS from "../../src/lib";
 import * as Helpers from "../helpers";
 
 describe("VanillaSwipe: getPosition", function() {
@@ -16,7 +16,7 @@ describe("VanillaSwipe: getPosition", function() {
 
   it("should return default data if rotationAngle is passed", function() {
     const VanillaSwipe = new VS({ element: null, rotationAngle: 10 });
-    const touchMoveEventObject: any = Helpers.createTouchMoveEventObject(0, 1);
+    const touchMoveEventObject: any = Helpers.createTouchMoveEventObject(-10, 1);
     const position = VanillaSwipe.getPosition(touchMoveEventObject);
 
     expect(position.absX > 0).toEqual(true);

@@ -1,4 +1,4 @@
-import { getInitialState } from '../../src/utils';
+import { getInitialState } from '../../src/lib/utils';
 
 describe('getInitialState', () => {
   it('should return expected data', () => {

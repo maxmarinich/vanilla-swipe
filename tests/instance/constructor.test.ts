@@ -1,5 +1,5 @@
-import VS from '../../src';
-import * as Utils from '../../src/utils';
+import VS from '../../src/lib';
+import * as Utils from '../../src/lib/utils';
 
 describe('VanillaSwipe: constructor', function() {
   afterEach(() => {

@@ -1,5 +1,5 @@
 import * as Helpers from '../helpers';
-import * as Utils from '../../src/utils';
+import * as Utils from '../../src/lib/utils';
 
 describe('calculateMovingPosition', () => {
   it('should return expected data if `changedTouches` property is presented', () => {

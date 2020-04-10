@@ -59,4 +59,7 @@ package-lock.json
 tsconfig.json
 jestconfig.json
 jest.config.js
+webpack.config.js
 coverage
+static
+index.html

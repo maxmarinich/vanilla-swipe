@@ -1,4 +1,4 @@
-import { getOptions } from '../../src/utils';
+import { getOptions } from '../../src/lib/utils';
 
 describe('getOptions', () => {
   it('should return expected data if props are passed false', () => {

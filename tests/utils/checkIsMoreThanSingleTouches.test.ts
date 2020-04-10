@@ -1,5 +1,5 @@
 import * as Helpers from '../helpers';
-import { checkIsMoreThanSingleTouches } from '../../src/utils';
+import { checkIsMoreThanSingleTouches } from '../../src/lib/utils';
 
 describe('checkIsMoreThanSingleTouches', () => {
   it('should return expected data if has more than single touches', () => {

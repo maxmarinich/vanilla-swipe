@@ -7,6 +7,7 @@ export interface State {
 
 export interface ConstructorProps {
   element?: HTMLElement | null;
+  target?: HTMLElement | null;
   delta?: number | 10;
   rotationAngle?: number | 0;
   mouseTrackingEnabled?: boolean | false;
@@ -15,9 +16,16 @@ export interface ConstructorProps {
   preventTrackingOnMouseleave?: boolean | false;
   onSwiping?: EventHandler;
   onSwiped?: EventHandler;
-  onTap?: (e: Event) => void;
+  onTap?: EventHandler;
 }
 
-type EventHandler = {
-  (e: Event, deltaX: number, deltaY: number, absX: number, absY: number, duration: number): void;
+export type EventHandler = { (e: Event, data: EventData): void };
+
+export type EventData = {
+  deltaX: number;
+  deltaY: number;
+  absX: number;
+  absY: number;
+  duration: number;
+  velocity: number;
 };

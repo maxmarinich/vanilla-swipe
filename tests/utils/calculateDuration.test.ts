@@ -1,4 +1,4 @@
-import { calculateDuration } from "../../src/utils";
+import { calculateDuration } from "../../src/lib/utils";
 
 describe("calculateDuration", () => {
   it("should return expected data if no time", () => {

@@ -1,4 +1,4 @@
-import { createOptions } from '../../src/utils';
+import { createOptions } from '../../src/lib/utils';
 
 describe('createOptions', () => {
   const value = { isPassiveSupported: true, passive: true };

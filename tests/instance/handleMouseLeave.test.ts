@@ -1,4 +1,4 @@
-import VS from '../../src';
+import VS from '../../src/lib';
 import * as Helpers from '../helpers';
 
 describe('VanillaSwipe: handleMouseLeave', function() {
@@ -42,9 +42,11 @@ describe('VanillaSwipe: handleMouseLeave', function() {
     const onTap = jest.fn();
     const element = document.getElementById('root');
     const VanillaSwipe = new VS({ element, onTap, mouseTrackingEnabled: true });
+    const mouseleave = Helpers.createEvent('mouseleave', Helpers.createMouseEventObject(100, 100));
+
 
     VanillaSwipe.init();
-    VanillaSwipe.handleMouseLeave();
+    VanillaSwipe.handleMouseLeave(mouseleave);
 
     expect(onTap).toHaveBeenCalledTimes(0);
   });

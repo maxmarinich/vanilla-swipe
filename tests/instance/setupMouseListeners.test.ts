@@ -1,4 +1,4 @@
-import VS from '../../src';
+import VS from '../../src/lib';
 
 describe('VanillaSwipe: setupMouseListeners', function() {
   it('should return expected data if no elenment && not mouseTrackingEnabled', function() {

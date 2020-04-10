@@ -1,4 +1,4 @@
-import { rotateByAngle } from '../../src/utils';
+import { rotateByAngle } from '../../src/lib/utils';
 
 describe('rotateByAngle', () => {
   it('should return expected data if `angle` not passed', () => {

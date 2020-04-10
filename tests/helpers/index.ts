@@ -35,10 +35,6 @@ export function createMouseEventObject(x: number = 0, y: number = 0, preventDefa
   };
 }
 
-export function createTouches(x: number, y: number, create: boolean) {
-  return create ? { touches: createClientXYObject(x, y) } : {};
-}
-
 export function noop() {}
 export function repeat(data: any, count = 0) {
   return Array(count).fill(data);

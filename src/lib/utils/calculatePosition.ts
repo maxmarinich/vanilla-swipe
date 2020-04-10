@@ -5,7 +5,7 @@ export function calculatePosition(
   prevPos: prevPosition,
   nextPos: nextPosition
 ): Value {
-  const deltaX = prevPos.x - nextPos.x;
+  const deltaX = nextPos.x - prevPos.x;
   const deltaY = prevPos.y - nextPos.y;
 
   const absX = Math.abs(deltaX);

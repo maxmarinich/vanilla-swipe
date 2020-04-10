@@ -1,4 +1,4 @@
-import { getInitialProps } from '../../src/utils';
+import { getInitialProps } from '../../src/lib/utils';
 
 describe('getInitialProps', () => {
   const defaultProps = {

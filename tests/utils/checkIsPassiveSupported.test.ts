@@ -1,4 +1,4 @@
-import { checkIsPassiveSupported, noop } from '../../src/utils';
+import { checkIsPassiveSupported, noop } from '../../src/lib/utils';
 
 describe('checkIsPassiveSupported', () => {
   it('should return expected data if no params', () => {

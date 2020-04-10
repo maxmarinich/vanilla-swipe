@@ -6,34 +6,51 @@ Tiny vanilla JS library to detect swipe direction.
 [![npm version](https://badge.fury.io/js/vanilla-swipe.svg)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![covarage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
+#### Live demo [👉](https://maxmarinich.github.io/vanilla-swipe)
+
 ### Types
 
 ```typescript
 type ConstructorProps = {
   element?: HTMLElement | null;
+  target?: HTMLElement | null;
+  delta?: number | 10;
   rotationAngle?: number | 0;
-  delta?: number | 10; // minimum distance to the start of the swiping (px)
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
-  preventDefaultTouchmoveEvent?: boolean | false; // stop the browser scrolling while swiping
-  preventTrackingOnMouseleave?: boolean | false; // fired onSwiped or onTap handlers when the cursor leaves the element's borders
+  preventDefaultTouchmoveEvent?: boolean | false;
+  preventTrackingOnMouseleave?: boolean | false;
   onSwiping?: EventHandler;
   onSwiped?: EventHandler;
-  onTap?: (e: Event) => void;
+  onTap?: EventHandler;
 };
 
 type EventHandler = {
-  (
-    e: Event,
-    deltaX: number,
-    deltaY: number,
-    absX: number,
-    absY: number,
-    duration: number, // ms
-    velocity: number // (px/ms)
-  ): void;
+  (e: Event, data: EventData): void;
+};
+
+type EventData = {
+  deltaX: number;
+  deltaY: number;
+  absX: number;
+  absY: number;
+  duration: number; // ms
+  velocity: number; // (px/ms)
 };
 ```
+### _Props_
+
+- `element` - target event trigger
+- `target` - additionally target event trigger, if specified  with the element, will be used by all handlers to trigger the action
+- `delta` - minimal distance in `px` before a swipe starts
+- `rotationAngle` - rotation angle
+- `mouseTrackingEnabled` - enable mouse tracking
+- `touchTrackingEnabled` - enable touch tracking
+- `preventDefaultTouchmoveEvent` - prevent default touch events while touching
+- `preventTrackingOnMouseleave` - triggered `onSwiped` callback when the event loses the element's focus
+- `onSwiping` - triggered during swipe
+- `onSwiped` - triggered after swipe
+- `onTap` - triggered when the swipe value is less than the minimum distance (`delta`)
 
 ### _Methods_
 
@@ -62,7 +79,7 @@ const VS = new VanillaSwipe({
 VS.init();
 
 function handler() {
-  console.log(...arguments); // -> Event, deltaX, deltaY, absX, absY, duration, velocity
+  console.log(...arguments); // -> Event, { deltaX, deltaY, absX, absY, duration, velocity }
 }
 ```
 

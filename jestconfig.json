@@ -1,6 +1,6 @@
 {
   "collectCoverage": false,
-  "collectCoverageFrom": ["src/**/*.{ts,tsx}", "!<rootDir>tests/helpers/"],
+  "collectCoverageFrom": ["src/lib/**/*.{ts,tsx}", "!<rootDir>tests/helpers/"],
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },

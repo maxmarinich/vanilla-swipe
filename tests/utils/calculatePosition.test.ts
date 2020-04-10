@@ -1,4 +1,4 @@
-import { calculatePosition } from "../../src/utils";
+import { calculatePosition } from "../../src/lib/utils";
 
 const prevPos = { x: 1, y: 1, start: 1 };
 
@@ -7,7 +7,7 @@ describe("calculatePosition", () => {
     const nextPos = { x: -1, y: -1 };
     const data = calculatePosition(prevPos, nextPos);
 
-    expect(data.deltaX).toEqual(2);
+    expect(data.deltaX).toEqual(-2);
     expect(data.deltaY).toEqual(2);
     expect(data.absX).toEqual(2);
     expect(data.absY).toEqual(2);
@@ -19,7 +19,7 @@ describe("calculatePosition", () => {
     const nextPos = { x: 101, y: 100 };
     const data = calculatePosition(prevPos, nextPos);
 
-    expect(data.deltaX).toEqual(-100);
+    expect(data.deltaX).toEqual(100);
     expect(data.deltaY).toEqual(-100);
     expect(data.absX).toEqual(100);
     expect(data.absY).toEqual(100);
@@ -31,7 +31,7 @@ describe("calculatePosition", () => {
     const nextPos = { x: 100, y: 0 };
     const data = calculatePosition(prevPos, nextPos);
 
-    expect(data.deltaX).toEqual(-100);
+    expect(data.deltaX).toEqual(100);
     expect(data.deltaY).toEqual(0);
     expect(data.absX).toEqual(100);
     expect(data.absY).toEqual(0);

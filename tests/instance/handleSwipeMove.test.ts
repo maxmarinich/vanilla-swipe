@@ -1,4 +1,4 @@
-import VS from '../../src';
+import VS from '../../src/lib';
 import * as Helpers from '../helpers';
 
 describe('VanillaSwipe: handleSwipeMove', function() {

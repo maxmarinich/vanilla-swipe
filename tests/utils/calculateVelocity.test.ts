@@ -1,4 +1,4 @@
-import { calculateVelocity } from "../../src/utils";
+import { calculateVelocity } from "../../src/lib/utils";
 
 describe("calculateVelocity", () => {
   it("should return expected data if time passed", () => {

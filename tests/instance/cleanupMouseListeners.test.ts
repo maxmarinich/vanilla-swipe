@@ -1,4 +1,4 @@
-import VS from '../../src';
+import VS from '../../src/lib';
 
 describe('VanillaSwipe: cleanupMouseListeners', function() {
   it('should return expected data if no elenment', function() {

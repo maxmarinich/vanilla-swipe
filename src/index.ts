@@ -1,175 +1,58 @@
-import { State, ConstructorProps } from './types';
-import * as Utils from './utils';
+import VanillaSwipe, { EventData } from './lib';
 
-export default class VanillaSwipe {
-  state: State;
-  props: ConstructorProps;
+if (module.hot) module.hot.accept();
 
-  constructor(props: ConstructorProps) {
-    this.state = Utils.getInitialState();
-    this.props = Utils.getInitialProps(props);
+const element = document.getElementById('root');
+const target = document.getElementById('stick');
+const shadow = document.getElementById('shadow');
+const info = document.getElementById('info');
 
-    this.handleSwipeStart = this.handleSwipeStart.bind(this);
-    this.handleSwipeMove = this.handleSwipeMove.bind(this);
-    this.handleSwipeEnd = this.handleSwipeEnd.bind(this);
-    this.handleMouseDown = this.handleMouseDown.bind(this);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
-    this.handleMouseUp = this.handleMouseUp.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+const VS = new VanillaSwipe({
+  element,
+  target,
+  mouseTrackingEnabled: true,
+  preventTrackingOnMouseleave: true,
+  preventDefaultTouchmoveEvent: true,
+  onSwiping,
+  onSwiped,
+  onTap,
+});
+
+VS.init();
+
+function onTap(e: Event, data: EventData) {
+  return handler(e, data, 'onTap');
+}
+
+function onSwiping(e: Event, data: EventData) {
+  if (shadow) {
+    const { deltaX, deltaY } = data;
+    shadow.style.cssText = `
+      display: block;
+      transform: translate(${deltaX}px, ${-deltaY}px);
+    `;
   }
+  return handler(e, data, 'onSwiping')
+}
 
-  init() {
-    this.setupTouchListeners();
-    this.setupMouseListeners();
-  }
+function onSwiped(e: Event, data: EventData) {
+  if (shadow) shadow.style.cssText = '';
+  return handler(e, data, 'onSwiped');
+}
 
-  update(props: ConstructorProps) {
-    const prevProps = this.props;
-    const nextProps = Object.assign({}, prevProps, props);
+function handler(e: Event, data: EventData, listener: string ) {
+  const { deltaX, deltaY, absX, absY, duration, velocity } = data;
 
-    if (prevProps.element !== nextProps.element) {
-      this.destroy();
-      this.props = nextProps;
-      this.init();
-
-      return;
-    }
-
-    this.props = nextProps;
-
-    if (prevProps.mouseTrackingEnabled !== nextProps.mouseTrackingEnabled) {
-      nextProps.mouseTrackingEnabled ? this.setupMouseListeners() : this.cleanupMouseListeners();
-    }
-
-    if (prevProps.touchTrackingEnabled !== nextProps.touchTrackingEnabled) {
-      nextProps.touchTrackingEnabled ? this.setupTouchListeners() : this.cleanupTouchListeners();
-    }
-  }
-
-  destroy() {
-    this.cleanupMouseListeners();
-    this.cleanupTouchListeners();
-
-    this.state = Utils.getInitialState();
-    this.props = Utils.getInitialProps();
-  }
-
-  setupTouchListeners() {
-    const { element, touchTrackingEnabled } = this.props;
-
-    if (element && touchTrackingEnabled) {
-      const isPassiveSupported = Utils.checkIsPassiveSupported();
-      const options = Utils.getOptions(isPassiveSupported);
-
-      element.addEventListener('touchstart', this.handleSwipeStart, options);
-      element.addEventListener('touchmove', this.handleSwipeMove, options);
-      element.addEventListener('touchend', this.handleSwipeEnd, options);
-    }
-  }
-
-  cleanupTouchListeners() {
-    const { element } = this.props;
-
-    if (element) {
-      element.removeEventListener('touchstart', this.handleSwipeStart);
-      element.removeEventListener('touchmove', this.handleSwipeMove);
-      element.removeEventListener('touchend', this.handleSwipeEnd);
-    }
-  }
-
-  setupMouseListeners() {
-    const { element, mouseTrackingEnabled, preventTrackingOnMouseleave } = this.props;
-
-    if (element && mouseTrackingEnabled) {
-      element.addEventListener('mousedown', this.handleMouseDown);
-      element.addEventListener('mousemove', this.handleMouseMove);
-      element.addEventListener('mouseup', this.handleMouseUp);
-      preventTrackingOnMouseleave && element.addEventListener('mouseleave', this.handleMouseLeave);
-    }
-  }
-
-  cleanupMouseListeners() {
-    const { element, preventTrackingOnMouseleave } = this.props;
-
-    if (element) {
-      element.removeEventListener('mousedown', this.handleMouseDown);
-      element.removeEventListener('mousemove', this.handleMouseMove);
-      element.removeEventListener('mouseup', this.handleMouseUp);
-      preventTrackingOnMouseleave && element.removeEventListener('mouseleave', this.handleMouseLeave);
-    }
-  }
-
-  getPosition(e: TouchEvent | MouseEvent) {
-    const { x, y, start } = this.state;
-    const { rotationAngle } = this.props;
-    const movingPosition = Utils.calculateMovingPosition(e);
-    const rotatePosition = Utils.rotateByAngle(movingPosition, rotationAngle);
-
-    return Utils.calculatePosition({ x, y, start }, rotatePosition);
-  }
-
-  handleSwipeStart(e: any) {
-    if (Utils.checkIsMoreThanSingleTouches(e)) return;
-
-    const { rotationAngle } = this.props;
-    const movingPosition = Utils.calculateMovingPosition(e);
-    const { x, y } = Utils.rotateByAngle(movingPosition, rotationAngle);
-
-    this.state = { start: Date.now(), x, y, isSwiping: false };
-  }
-
-  handleSwipeMove(e: any) {
-    const { x, y } = this.state;
-
-    if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
-
-    const { absX, absY, deltaX, deltaY, duration } = this.getPosition(e);
-    const { delta, onSwiping, preventDefaultTouchmoveEvent } = this.props;
-
-    if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
-
-    if ((absX < Number(delta) && absY < Number(delta)) && !this.state.isSwiping) return;
-
-    this.state.isSwiping = true;
-
-    if (onSwiping) {
-      onSwiping(e, deltaX, deltaY, absX, absY, duration);
-    }
-  }
-
-  handleSwipeEnd(e: any) {
-    const { onSwiped, onTap } = this.props;
-
-    if (this.state.isSwiping) {
-      const position = this.getPosition(e);
-      const { deltaX, deltaY, absX, absY, duration } = position;
-
-      onSwiped && onSwiped(e, deltaX, deltaY, absX, absY, duration);
-    } else {
-      onTap && onTap(e);
-    }
-
-    this.state = Utils.getInitialState();
-  }
-
-  handleMouseDown(e: MouseEvent) {
-    this.handleSwipeStart(e);
-  }
-
-  handleMouseMove(e: MouseEvent) {
-    this.handleSwipeMove(e);
-  }
-
-  handleMouseUp(e: MouseEvent) {
-    this.handleSwipeEnd(e);
-  }
-
-  handleMouseLeave() {
-    const { element } = this.props;
-    const { isSwiping } = this.state;
-
-    if (element && isSwiping) {
-      element.dispatchEvent(new Event('mouseup', { bubbles: true, cancelable: true }));
-    }
+  if (info) {
+    info.innerText = `
+      EventType: ${e.type}
+      Listener: ${listener}
+      DeltaX: ${deltaX}
+      DeltaY: ${deltaY}
+      AbsX: ${absX}
+      AbsY: ${absY}
+      Duration: ${duration}
+      Velocity: ${velocity}
+    `;
   }
 }

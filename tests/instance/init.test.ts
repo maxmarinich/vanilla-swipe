@@ -1,4 +1,4 @@
-import VS from '../../src';
+import VS from '../../src/lib';
 
 describe('VanillaSwipe: init', function() {
   it('should be called', function() {
