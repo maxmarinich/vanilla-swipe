@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest --watch --config jestconfig.json",
+    "test": "jest --config jestconfig.json",
+    "test:watch": "jest --watch --config jestconfig.json",
     "testWithCoverage": "jest --config jestconfig.json --coverage",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
