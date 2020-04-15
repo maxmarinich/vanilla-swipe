@@ -100,5 +100,5 @@ npm test
 ### _Coverage_
 
 ```
-npm run testWithCoverage
+npm run test:coverage
 ```

@@ -6,12 +6,12 @@ const element = document.getElementById('pad');
 const target = document.getElementById('stick');
 const shadow = document.getElementById('shadow');
 const info = document.getElementById('info');
-const state = { isSwipeStarted: false }
+const state = { isSwipeStarted: false, delta: 15 }
 
 const VS = new VanillaSwipe({
   element,
   target,
-  delta: 15,
+  delta: state.delta,
   mouseTrackingEnabled: true,
   preventTrackingOnMouseleave: true,
   preventDefaultTouchmoveEvent: true,
@@ -61,7 +61,7 @@ function handler(e: Event, data: EventData, listener: string ) {
       AbsY: ${absY}
       Duration: ${duration}
       Velocity: ${velocity}
-      SwipeDelta: 15px
+      SwipeDelta: ${state.delta}px
       SwipeStarted: ${state.isSwipeStarted}
     `;
   }

@@ -140,4 +140,34 @@ describe('VanillaSwipe: handleSwipeMove', function() {
     expect(VanillaSwipe.state.isSwiping).toBe(true);
     expect(onSwiping).toHaveBeenCalledTimes(1);
   });
+
+  it('should have expected behavior if not onSwipeStart function', function() {
+    const element = document.createElement('div');
+    const onSwipeStart = jest.fn();
+
+    const touchStartEventObject: any = Helpers.createTouchMoveEventObject(1, 1);
+    const touchMoveEventObject: any = Helpers.createTouchMoveEventObject(5, 5);
+    const VanillaSwipe = new VS({ element });
+
+    VanillaSwipe.handleSwipeStart(touchStartEventObject);
+    VanillaSwipe.handleSwipeMove(touchMoveEventObject);
+
+    expect(VanillaSwipe.state.isSwiping).toBe(false);
+    expect(onSwipeStart).toHaveBeenCalledTimes(0);
+  });
+
+  it('should have expected behavior if onSwipeStart function', function() {
+    const element = document.createElement('div');
+    const onSwipeStart = jest.fn();
+
+    const touchStartEventObject: any = Helpers.createTouchMoveEventObject(1, 1);
+    const touchMoveEventObject: any = Helpers.createTouchMoveEventObject(20, 20);
+    const VanillaSwipe = new VS({ element, onSwipeStart });
+
+    VanillaSwipe.handleSwipeStart(touchStartEventObject);
+    VanillaSwipe.handleSwipeMove(touchMoveEventObject);
+
+    expect(VanillaSwipe.state.isSwiping).toBe(true);
+    expect(onSwipeStart).toHaveBeenCalledTimes(1);
+  });
 });
