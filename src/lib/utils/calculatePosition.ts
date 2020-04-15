@@ -1,10 +1,11 @@
 import { calculateDuration } from "./calculateDuration";
 import { calculateVelocity } from "./calculateVelocity";
+import { EventData } from '../types';
 
 export function calculatePosition(
   prevPos: prevPosition,
   nextPos: nextPosition
-): Value {
+): EventData {
   const deltaX = nextPos.x - prevPos.x;
   const deltaY = prevPos.y - nextPos.y;
 
@@ -15,15 +16,6 @@ export function calculatePosition(
 
   return { deltaX, deltaY, absX, absY, duration, velocity };
 }
-
-type Value = {
-  deltaX: number;
-  deltaY: number;
-  absX: number;
-  absY: number;
-  duration: number;
-  velocity: number;
-};
 
 type prevPosition = {
   x: number;
