@@ -132,16 +132,20 @@ export default class VanillaSwipe {
   }
 
   handleSwipeMove(e: any) {
-    const { x, y } = this.state;
+    const { x, y, isSwiping } = this.state;
 
     if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
 
     const { absX, absY, deltaX, deltaY, duration, velocity } = this.getPosition(e);
-    const { delta, preventDefaultTouchmoveEvent, onSwiping } = this.props;
+    const { delta, preventDefaultTouchmoveEvent, onSwipeStart, onSwiping } = this.props;
 
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
 
-    if (absX < Number(delta) && absY < Number(delta) && !this.state.isSwiping) return;
+    if (absX < Number(delta) && absY < Number(delta) && !isSwiping) return;
+
+    if (onSwipeStart && !isSwiping) {
+      onSwipeStart(e, { deltaX, deltaY, absX, absY, duration, velocity });
+    }
 
     this.state.isSwiping = true;
 

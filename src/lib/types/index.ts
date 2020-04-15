@@ -14,6 +14,7 @@ export interface ConstructorProps {
   touchTrackingEnabled?: boolean | true;
   preventDefaultTouchmoveEvent?: boolean | false;
   preventTrackingOnMouseleave?: boolean | false;
+  onSwipeStart?: EventHandler;
   onSwiping?: EventHandler;
   onSwiped?: EventHandler;
   onTap?: EventHandler;
