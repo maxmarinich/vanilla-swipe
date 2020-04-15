@@ -6,7 +6,7 @@ Tiny vanilla JS library to detect swipe direction.
 [![npm version](https://badge.fury.io/js/vanilla-swipe.svg)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![covarage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
-#### Live demo [👉](https://maxmarinich.github.io/vanilla-swipe/static)
+#### Live demo [👉here](https://maxmarinich.github.io/vanilla-swipe/static)
 
 ### Types
 
@@ -20,6 +20,7 @@ type ConstructorProps = {
   touchTrackingEnabled?: boolean | true;
   preventDefaultTouchmoveEvent?: boolean | false;
   preventTrackingOnMouseleave?: boolean | false;
+  onSwipeStart?: EventHandler;
   onSwiping?: EventHandler;
   onSwiped?: EventHandler;
   onTap?: EventHandler;
@@ -48,6 +49,7 @@ type EventData = {
 - `touchTrackingEnabled` - enable touch tracking
 - `preventDefaultTouchmoveEvent` - prevent default touch events while touching
 - `preventTrackingOnMouseleave` - triggered `onSwiped` callback when the event loses the element's focus
+- `onSwipeStart` - triggered on swipe start (if the `delta` is passed)
 - `onSwiping` - triggered during swipe
 - `onSwiped` - triggered after swipe
 - `onTap` - triggered when the swipe value is less than the minimum distance (`delta`)

@@ -91,6 +91,15 @@
         bottom: 0;
         margin: auto;
       }
+      #code {
+        display: block;
+        width: 20px;
+        height: 20px;
+        outline: none;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
     </style>
   </head>
   <body>
@@ -106,6 +115,7 @@
             viewBox="0 0 511.999 511.999"
             xml:space="preserve"
           >
+            <title>Home Page</title>
             <path
               style="fill:#BDBCBC;"
               d="M51.307,36.877v116.509c0,4.427,3.589,8.017,8.017,8.017h85.511c4.427,0,8.017-3.589,8.017-8.017  V36.877H51.307z"
@@ -183,6 +193,13 @@
       <div id="pad">
         <div id="stick"></div>
         <div id="shadow"></div>
+        <a href="https://github.com/maxmarinich/vanilla-swipe/blob/master/src/index.ts" id="code">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <title>Code Sample</title>
+            <path fill="cadetblue"
+              d="M16.61 11.11v5.72a1.77 1.77 0 0 1-1.54 1.69h-4a1.43 1.43 0 0 1-1.31-1.22 1.09 1.09 0 0 1 0-.18 1.37 1.37 0 0 1 1.37-1.36h1.74a1 1 0 0 0 1-1v-3.62a1.4 1.4 0 0 1 1.18-1.39h.17a1.37 1.37 0 0 1 1.39 1.36zm-6.46 1.74V9.26a1 1 0 0 1 1-1H13a1.37 1.37 0 0 0 1.37-1.37 1 1 0 0 0 0-.17 1.45 1.45 0 0 0-1.41-1.2H9a1.81 1.81 0 0 0-1.58 1.66v5.7a1.37 1.37 0 0 0 1.37 1.37H9a1.4 1.4 0 0 0 1.15-1.4zm12-4.29V20A4.53 4.53 0 0 1 18 24h-7.58a8.57 8.57 0 0 1-8.56-8.57V4.54A4.54 4.54 0 0 1 6.4 0h7.18a8.56 8.56 0 0 1 8.56 8.56zm-2.74 0a5.83 5.83 0 0 0-5.82-5.82H6.4a1.79 1.79 0 0 0-1.8 1.8v10.89a5.83 5.83 0 0 0 5.82 5.8h7.44a1.79 1.79 0 0 0 1.54-1.48z"
+            /></svg>
+        </a>
       </div>
       <h3 id="info">
         <br />
@@ -194,6 +211,8 @@
         AbsY: 0<br />
         Duration: 0<br />
         Velocity: 0<br />
+        SwipeDelta: 15px<br />
+        SwipeStarted: false<br />
       </h3>
     </div>
   </body>

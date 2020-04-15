@@ -6,13 +6,16 @@ const element = document.getElementById('pad');
 const target = document.getElementById('stick');
 const shadow = document.getElementById('shadow');
 const info = document.getElementById('info');
+const state = { isSwipeStarted: false }
 
 const VS = new VanillaSwipe({
   element,
   target,
+  delta: 15,
   mouseTrackingEnabled: true,
   preventTrackingOnMouseleave: true,
   preventDefaultTouchmoveEvent: true,
+  onSwipeStart,
   onSwiping,
   onSwiped,
   onTap,
@@ -24,6 +27,10 @@ function onTap(e: Event, data: EventData) {
   return handler(e, data, 'onTap');
 }
 
+function onSwipeStart() {
+  state.isSwipeStarted = true;
+}
+
 function onSwiping(e: Event, data: EventData) {
   if (shadow) {
     const { deltaX, deltaY } = data;
@@ -32,11 +39,12 @@ function onSwiping(e: Event, data: EventData) {
       transform: translate(${deltaX}px, ${-deltaY}px);
     `;
   }
-  return handler(e, data, 'onSwiping')
+  return handler(e, data, 'onSwiping');
 }
 
 function onSwiped(e: Event, data: EventData) {
   if (shadow) shadow.style.cssText = '';
+  state.isSwipeStarted = false;
   return handler(e, data, 'onSwiped');
 }
 
@@ -53,6 +61,8 @@ function handler(e: Event, data: EventData, listener: string ) {
       AbsY: ${absY}
       Duration: ${duration}
       Velocity: ${velocity}
+      SwipeDelta: 15px
+      SwipeStarted: ${state.isSwipeStarted}
     `;
   }
 }
