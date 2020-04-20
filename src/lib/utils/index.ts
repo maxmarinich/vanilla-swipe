@@ -2,6 +2,7 @@ export * from "./getInitialState";
 export * from "./getInitialProps";
 export * from "./checkIsPassiveSupported";
 export * from "./calculateDuration";
+export * from "./calculateDirection";
 export * from "./calculatePosition";
 export * from "./calculateMovingPosition";
 export * from "./calculateVelocity";

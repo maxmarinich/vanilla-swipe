@@ -31,13 +31,17 @@ type EventHandler = {
 };
 
 type EventData = {
-  deltaX: number;
-  deltaY: number;
   absX: number;
   absY: number;
+  deltaX: number;
+  deltaY: number;
   duration: number; // ms
+  direction: [DirectionX, DirectionY];
   velocity: number; // (px/ms)
 };
+
+type DirectionX = 'LEFT' | 'RIGHT';
+type DirectionY = 'TOP' | 'BOTTOM';
 ```
 ### _Props_
 
