@@ -35,13 +35,12 @@ type EventData = {
   absY: number;
   deltaX: number;
   deltaY: number;
+  directionX: 'LEFT' | 'RIGHT';
+  directionY: 'TOP' | 'BOTTOM';
   duration: number; // ms
-  direction: [DirectionX, DirectionY];
   velocity: number; // (px/ms)
 };
 
-type DirectionX = 'LEFT' | 'RIGHT';
-type DirectionY = 'TOP' | 'BOTTOM';
 ```
 ### _Props_
 
@@ -85,7 +84,7 @@ const VS = new VanillaSwipe({
 VS.init();
 
 function handler() {
-  console.log(...arguments); // -> Event, { deltaX, deltaY, absX, absY, duration, velocity }
+  console.log(...arguments); // -> Event, EventData
 }
 ```
 

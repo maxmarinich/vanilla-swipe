@@ -10,3 +10,4 @@ export * from "./rotateByAngle";
 export * from "./checkIsMoreThanSingleTouches";
 export * from "./createOptions";
 export * from "./getOptions";
+export * from "./updateTrace";

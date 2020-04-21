@@ -18,8 +18,9 @@ export type EventData = {
   absY: number;
   deltaX: number;
   deltaY: number;
+  directionX: string,
+  directionY: string,
   duration: number;
-  direction: string[];
   velocity: number;
 };
 

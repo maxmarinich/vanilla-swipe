@@ -135,7 +135,7 @@ export default class VanillaSwipe {
 
     if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
 
-    const { absX, absY, deltaX, deltaY, duration, direction, velocity } = this.getEventData(e);
+    const { absX, absY, deltaX, deltaY, directionX, directionY, duration, velocity } = this.getEventData(e);
     const { delta, preventDefaultTouchmoveEvent, onSwipeStart, onSwiping } = this.props;
 
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
@@ -143,13 +143,13 @@ export default class VanillaSwipe {
     if (absX < Number(delta) && absY < Number(delta) && !isSwiping) return;
 
     if (onSwipeStart && !isSwiping) {
-      onSwipeStart(e, { deltaX, deltaY, absX, absY, duration, direction, velocity });
+      onSwipeStart(e, { deltaX, deltaY, absX, absY, directionX, directionY, duration, velocity });
     }
 
     this.state.isSwiping = true;
 
     if (onSwiping) {
-      onSwiping(e, { deltaX, deltaY, absX, absY, duration, direction, velocity });
+      onSwiping(e, { deltaX, deltaY, absX, absY, directionX, directionY, duration, velocity });
     }
   }
 

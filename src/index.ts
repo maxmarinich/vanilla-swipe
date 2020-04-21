@@ -49,7 +49,7 @@ function onSwiped(e: Event, data: EventData) {
 }
 
 function handler(e: Event, data: EventData, listener: string ) {
-  const { deltaX, deltaY, absX, absY, duration, direction, velocity } = data;
+  const { deltaX, deltaY, absX, absY, directionX, directionY, duration, velocity } = data;
 
   if (info) {
     info.innerText = `
@@ -59,8 +59,9 @@ function handler(e: Event, data: EventData, listener: string ) {
       DeltaY: ${deltaY}
       AbsX: ${absX}
       AbsY: ${absY}
+      DirectionX: ${directionX}
+      DirectionY: ${directionY}
       Duration: ${duration}
-      Direction: ${direction.join(', ')}
       Velocity: ${velocity}
       SwipeDelta: ${state.delta}px
       SwipeStarted: ${state.isSwipeStarted}
