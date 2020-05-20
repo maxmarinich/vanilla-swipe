@@ -35,8 +35,8 @@ type EventData = {
   absY: number;
   deltaX: number;
   deltaY: number;
-  directionX: 'LEFT' | 'RIGHT';
-  directionY: 'TOP' | 'BOTTOM';
+  directionX: 'LEFT' | 'RIGHT' | 'NONE';
+  directionY: 'TOP' | 'BOTTOM' | 'NONE';
   duration: number; // ms
   velocity: number; // (px/ms)
 };
