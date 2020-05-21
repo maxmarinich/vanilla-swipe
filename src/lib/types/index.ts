@@ -1,10 +1,3 @@
-export interface State {
-  x: number;
-  y: number;
-  start: number;
-  isSwiping: boolean;
-}
-
 export interface ConstructorProps {
   element?: HTMLElement | null;
   target?: HTMLElement | null;
@@ -20,13 +13,26 @@ export interface ConstructorProps {
   onTap?: EventHandler;
 }
 
-export type EventHandler = { (e: Event, data: EventData): void };
-
 export type EventData = {
-  deltaX: number;
-  deltaY: number;
   absX: number;
   absY: number;
+  deltaX: number;
+  deltaY: number;
+  directionX: string,
+  directionY: string,
   duration: number;
   velocity: number;
 };
+
+export type State = {
+  x: number;
+  y: number;
+  start: number;
+  isSwiping: boolean;
+  traceX: Trace;
+  traceY: Trace;
+}
+
+export type Trace = number[];
+
+export type EventHandler = { (e: Event, data: EventData): void };

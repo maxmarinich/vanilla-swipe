@@ -31,13 +31,16 @@ type EventHandler = {
 };
 
 type EventData = {
-  deltaX: number;
-  deltaY: number;
   absX: number;
   absY: number;
+  deltaX: number;
+  deltaY: number;
+  directionX: 'LEFT' | 'RIGHT' | 'NONE';
+  directionY: 'TOP' | 'BOTTOM' | 'NONE';
   duration: number; // ms
   velocity: number; // (px/ms)
 };
+
 ```
 ### _Props_
 
@@ -81,7 +84,7 @@ const VS = new VanillaSwipe({
 VS.init();
 
 function handler() {
-  console.log(...arguments); // -> Event, { deltaX, deltaY, absX, absY, duration, velocity }
+  console.log(...arguments); // -> Event, EventData
 }
 ```
 

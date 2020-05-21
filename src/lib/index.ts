@@ -112,13 +112,12 @@ export default class VanillaSwipe {
     }
   }
 
-  getPosition(e: TouchEvent | MouseEvent) {
-    const { x, y, start } = this.state;
+  getEventData(e: TouchEvent | MouseEvent) {
     const { rotationAngle } = this.props;
     const movingPosition = Utils.calculateMovingPosition(e);
     const rotatePosition = Utils.rotateByAngle(movingPosition, rotationAngle);
 
-    return Utils.calculatePosition({ x, y, start }, rotatePosition);
+    return Utils.calculatePosition(this.state, rotatePosition);
   }
 
   handleSwipeStart(e: any) {
@@ -128,7 +127,7 @@ export default class VanillaSwipe {
     const movingPosition = Utils.calculateMovingPosition(e);
     const { x, y } = Utils.rotateByAngle(movingPosition, rotationAngle);
 
-    this.state = { start: Date.now(), x, y, isSwiping: false };
+    this.state = Utils.getInitialState({ start: Date.now(), x, y, isSwiping: false });
   }
 
   handleSwipeMove(e: any) {
@@ -136,7 +135,7 @@ export default class VanillaSwipe {
 
     if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
 
-    const { absX, absY, deltaX, deltaY, duration, velocity } = this.getPosition(e);
+    const { absX, absY, deltaX, deltaY, directionX, directionY, duration, velocity } = this.getEventData(e);
     const { delta, preventDefaultTouchmoveEvent, onSwipeStart, onSwiping } = this.props;
 
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
@@ -144,24 +143,23 @@ export default class VanillaSwipe {
     if (absX < Number(delta) && absY < Number(delta) && !isSwiping) return;
 
     if (onSwipeStart && !isSwiping) {
-      onSwipeStart(e, { deltaX, deltaY, absX, absY, duration, velocity });
+      onSwipeStart(e, { deltaX, deltaY, absX, absY, directionX, directionY, duration, velocity });
     }
 
     this.state.isSwiping = true;
 
     if (onSwiping) {
-      onSwiping(e, { deltaX, deltaY, absX, absY, duration, velocity });
+      onSwiping(e, { deltaX, deltaY, absX, absY, directionX, directionY, duration, velocity });
     }
   }
 
   handleSwipeEnd(e: any) {
     const { onSwiped, onTap } = this.props;
+    const position = this.getEventData(e);
 
     if (this.state.isSwiping) {
-      const position = this.getPosition(e);
       onSwiped && onSwiped(e, position);
     } else {
-      const position = this.getPosition(e);
       onTap && onTap(e, position);
     }
 
