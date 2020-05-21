@@ -155,12 +155,11 @@ export default class VanillaSwipe {
 
   handleSwipeEnd(e: any) {
     const { onSwiped, onTap } = this.props;
+    const position = this.getEventData(e);
 
     if (this.state.isSwiping) {
-      const position = this.getEventData(e);
       onSwiped && onSwiped(e, position);
     } else {
-      const position = this.getEventData(e);
       onTap && onTap(e, position);
     }
 

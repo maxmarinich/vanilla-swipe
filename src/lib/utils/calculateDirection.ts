@@ -5,7 +5,7 @@ export function calculateDirection(trace: number[], axis: 'x' | 'y') {
   const current = trace[trace.length - 1];
   const previous = trace[trace.length - 2] || 0;
 
-  if (trace.every(i => Math.abs(i) === 0)) {
+  if (trace.every(i => i === 0)) {
     return 'NONE';
   }
 
