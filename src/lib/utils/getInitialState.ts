@@ -1,5 +1,3 @@
-import { State } from '../types';
-
 export const getInitialState = (options = {}) => {
   return {
     x: 0,

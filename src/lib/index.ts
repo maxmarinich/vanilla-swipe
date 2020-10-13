@@ -46,9 +46,7 @@ export default class VanillaSwipe {
       nextProps.mouseTrackingEnabled ? this.setupMouseListeners() : this.cleanupMouseListeners();
     }
 
-    if (
-      prevProps.touchTrackingEnabled !== nextProps.touchTrackingEnabled
-    ) {
+    if (prevProps.touchTrackingEnabled !== nextProps.touchTrackingEnabled) {
       this.cleanupTouchListeners();
       nextProps.touchTrackingEnabled ? this.setupTouchListeners() : this.cleanupTouchListeners();
     }
@@ -127,7 +125,12 @@ export default class VanillaSwipe {
     const movingPosition = Utils.calculateMovingPosition(e);
     const { x, y } = Utils.rotateByAngle(movingPosition, rotationAngle);
 
-    this.state = Utils.getInitialState({ start: Date.now(), x, y, isSwiping: false });
+    this.state = Utils.getInitialState({
+      isSwiping: false,
+      start: Date.now(),
+      x,
+      y,
+    });
   }
 
   handleSwipeMove(e: any) {
@@ -155,9 +158,11 @@ export default class VanillaSwipe {
 
   handleSwipeEnd(e: any) {
     const { onSwiped, onTap } = this.props;
+    const { x, y } = this.state;
     const position = this.getEventData(e);
 
     if (this.state.isSwiping) {
+      console.debug('__END: x-y', x, y, position.positionX, position.positionY);
       onSwiped && onSwiped(e, position);
     } else {
       onTap && onTap(e, position);

@@ -18,9 +18,11 @@ export type EventData = {
   absY: number;
   deltaX: number;
   deltaY: number;
-  directionX: string,
-  directionY: string,
+  directionX: Direction;
+  directionY: Direction;
   duration: number;
+  positionX?: number;
+  positionY?: number;
   velocity: number;
 };
 
@@ -31,8 +33,27 @@ export type State = {
   isSwiping: boolean;
   traceX: Trace;
   traceY: Trace;
-}
+};
 
 export type Trace = number[];
+
+type TraceDirectionKeys = 'NEGATIVE' | 'POSITIVE' | 'NONE' | string
+
+export type TraceDirection = {
+  [key in TraceDirectionKeys]: number[];
+};
+
+export enum Direction {
+  TOP = 'TOP',
+  LEFT = 'LEFT',
+  RIGHT = 'RIGHT',
+  BOTTOM = 'BOTTOM',
+  NONE = 'NONE',
+}
+
+export enum Axis {
+  X = 'x',
+  Y = 'y',
+}
 
 export type EventHandler = { (e: Event, data: EventData): void };
