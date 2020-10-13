@@ -2,7 +2,7 @@ export interface ConstructorProps {
   element?: HTMLElement | null;
   target?: HTMLElement | null;
   delta?: number | 10;
-  directionDelta?: number;
+  directionDelta?: number | 0;
   rotationAngle?: number | 0;
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
@@ -45,7 +45,7 @@ export enum TraceDirectionKey {
 }
 
 export type TraceDirection = {
-  [key in TraceDirectionKey]: number[];
+  [key in TraceDirectionKey | string]: number[];
 };
 
 export enum Direction {

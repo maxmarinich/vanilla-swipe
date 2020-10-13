@@ -159,9 +159,10 @@ export default class VanillaSwipe {
   }
 
   handleSwipeEnd(e: any) {
-    const { onSwiped, onTap, directionDelta = 0 } = this.props;
+    const { onSwiped, onTap } = this.props;
 
     if (this.state.isSwiping) {
+      const directionDelta = this.props.directionDelta || 0;
       const position = this.getEventData(e, { directionDelta });
       onSwiped && onSwiped(e, position);
     } else {

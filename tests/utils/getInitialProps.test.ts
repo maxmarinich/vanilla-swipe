@@ -4,6 +4,7 @@ describe('getInitialProps', () => {
   const defaultProps = {
     element: null,
     delta: 10,
+    directionDelta: 0,
     rotationAngle: 0,
     mouseTrackingEnabled: false,
     touchTrackingEnabled: true,

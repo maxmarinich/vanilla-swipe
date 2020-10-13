@@ -18,7 +18,7 @@ describe('common', () => {
 
   it('getDirectionKey: expected', () => {
     const data = getDirectionKey({ name: '' });
-    expect(data).toBe('name');
+    expect(data).toBe('NONE');
   });
 
   it('getDifference: default', () => {

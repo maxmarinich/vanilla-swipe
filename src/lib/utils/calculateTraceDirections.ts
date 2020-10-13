@@ -1,13 +1,13 @@
-import { TraceDirection  } from '../types';
+import { TraceDirection, TraceDirectionKey } from '../types';
 
 export function calculateTraceDirections(trace: number[] = []): TraceDirection[] {
   const ticks: TraceDirection[] = [];
-  const positive = 'POSITIVE';
-  const negative = 'NEGATIVE';
+  const positive = TraceDirectionKey.POSITIVE;
+  const negative = TraceDirectionKey.NEGATIVE;
 
   let i = 0;
   let tick = [];
-  let direction = 'NONE';
+  let direction = TraceDirectionKey.NONE;
 
   for (; i < trace.length; i++) {
     let current = trace[i];
@@ -16,7 +16,7 @@ export function calculateTraceDirections(trace: number[] = []): TraceDirection[]
     if (tick.length) {
       const currentDirection = current > prev ? positive : negative;
 
-      if (direction === 'NONE') {
+      if (direction === TraceDirectionKey.NONE) {
         direction = currentDirection;
       }
 
