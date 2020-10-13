@@ -1,25 +1,22 @@
-import { calculateDuration } from './calculateDuration';
-import { calculateVelocity } from './calculateVelocity';
-import { updateTrace } from './updateTrace';
-import * as Utils from './index';
-import type { EventData, State } from '../types';
+import * as Utils from '.';
+import { Axis, EventData, State } from '../types';
 
-export function calculatePosition(state: State, nextPos: nextPosition): EventData {
-  const deltaX = nextPos.x - state.x;
-  const deltaY = state.y - nextPos.y;
+export function calculatePosition(state: State, options: Options): EventData {
+  const { start, x, y, traceX, traceY } = state;
+  const { rotatePosition, directionDelta } = options;
+  const deltaX = rotatePosition.x - x;
+  const deltaY = y - rotatePosition.y;
 
   const absX = Math.abs(deltaX);
   const absY = Math.abs(deltaY);
 
-  updateTrace(state.traceX, deltaX);
-  updateTrace(state.traceY, deltaY);
+  Utils.updateTrace(traceX, deltaX);
+  Utils.updateTrace(traceY, deltaY);
 
-  console.debug(JSON.stringify(state.traceX));
-
-  const directionX = Utils.calculateDirection(state.traceX, 'x');
-  const directionY = Utils.calculateDirection(state.traceY, 'y');
-  const duration = calculateDuration(state.start, Date.now());
-  const velocity = calculateVelocity(absX, absY, duration);
+  const directionX = Utils.resolveDirection(traceX, Axis.X, directionDelta);
+  const directionY = Utils.resolveDirection(traceY, Axis.Y, directionDelta);
+  const duration = Utils.calculateDuration(start, Date.now());
+  const velocity = Utils.calculateVelocity(absX, absY, duration);
 
   return {
     absX,
@@ -29,11 +26,16 @@ export function calculatePosition(state: State, nextPos: nextPosition): EventDat
     directionX,
     directionY,
     duration,
-    positionX: nextPos.x,
-    positionY: nextPos.y,
+    positionX: rotatePosition.x,
+    positionY: rotatePosition.y,
     velocity,
   };
 }
+
+type Options = {
+  rotatePosition: nextPosition;
+  directionDelta: number;
+};
 
 type nextPosition = {
   x: number;

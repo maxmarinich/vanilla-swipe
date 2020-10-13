@@ -1,11 +1,11 @@
-import { TraceDirection } from '../types';
-import { getDirectionKey,  getDirectionValue, getDifference} from '.';
+import { TraceDirection, TraceDirectionKey } from '../types';
+import { getDirectionKey, getDirectionValue, getDifference } from '.';
 
 export function calculateDirectionDelta(traceDirections: TraceDirection[], delta = 0) {
   const { length } = traceDirections;
 
   let i = length - 1;
-  let direction = 'NONE';
+  let direction = TraceDirectionKey.NONE;
 
   for (; i >= 0; i--) {
     const current = traceDirections[i];

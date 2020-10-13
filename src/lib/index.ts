@@ -110,12 +110,14 @@ export default class VanillaSwipe {
     }
   }
 
-  getEventData(e: TouchEvent | MouseEvent) {
+  getEventData(e: TouchEvent | MouseEvent, options = { directionDelta: 0 }) {
     const { rotationAngle } = this.props;
+    const { traceX, traceY } = this.state;
+    const { directionDelta } = options;
     const movingPosition = Utils.calculateMovingPosition(e);
     const rotatePosition = Utils.rotateByAngle(movingPosition, rotationAngle);
 
-    return Utils.calculatePosition(this.state, rotatePosition);
+    return Utils.calculatePosition(this.state, { rotatePosition, directionDelta });
   }
 
   handleSwipeStart(e: any) {
@@ -157,14 +159,13 @@ export default class VanillaSwipe {
   }
 
   handleSwipeEnd(e: any) {
-    const { onSwiped, onTap } = this.props;
-    const { x, y } = this.state;
-    const position = this.getEventData(e);
+    const { onSwiped, onTap, directionDelta = 0 } = this.props;
 
     if (this.state.isSwiping) {
-      console.debug('__END: x-y', x, y, position.positionX, position.positionY);
+      const position = this.getEventData(e, { directionDelta });
       onSwiped && onSwiped(e, position);
     } else {
+      const position = this.getEventData(e);
       onTap && onTap(e, position);
     }
 

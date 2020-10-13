@@ -12,5 +12,6 @@ export * from "./createOptions";
 export * from "./getInitialState";
 export * from "./getInitialProps";
 export * from "./getOptions";
+export * from "./resolveDirection";
 export * from "./rotateByAngle";
 export * from "./updateTrace";
