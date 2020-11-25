@@ -6,7 +6,7 @@ Tiny vanilla JS library to detect swipe direction.
 [![npm version](https://badge.fury.io/js/vanilla-swipe.svg)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![covarage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
-#### Live demo [👉here](https://maxmarinich.github.io/vanilla-swipe/static)
+#### 👉 Live [demo](https://maxmarinich.github.io/vanilla-swipe/static).
 
 ### Types
 
@@ -15,6 +15,7 @@ type ConstructorProps = {
   element?: HTMLElement | null;
   target?: HTMLElement | null;
   delta?: number | 10;
+  directionDelta?: number | 0;
   rotationAngle?: number | 0;
   mouseTrackingEnabled?: boolean | false;
   touchTrackingEnabled?: boolean | true;
@@ -47,6 +48,7 @@ type EventData = {
 - `element` - target event trigger
 - `target` - additionally target event trigger, if specified  with the element, will be used by all handlers to trigger the action
 - `delta` - minimal distance in `px` before a swipe starts
+- `directionDelta` - minimum distance in `px` required for the direction to be reversed while swiping. 
 - `rotationAngle` - rotation angle
 - `mouseTrackingEnabled` - enable mouse tracking
 - `touchTrackingEnabled` - enable touch tracking

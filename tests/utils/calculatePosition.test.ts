@@ -1,10 +1,11 @@
-import { calculatePosition } from "../../src/lib/utils";
+import { calculatePosition } from '../../src/lib/utils';
 
-describe("calculatePosition", () => {
-  it("should return expected data if next position is less", () => {
-    const nextPos = { x: -1, y: -1 };
+describe('calculatePosition', () => {
+  it('should return expected data if next position is less', () => {
+    const directionDelta = 0;
+    const rotatePosition = { x: -1, y: -1 };
     const state = { x: 1, y: 1, start: 1, traceX: [], traceY: [], isSwiping: false };
-    const data = calculatePosition(state, nextPos);
+    const data = calculatePosition(state, { rotatePosition, directionDelta });
 
     expect(data.deltaX).toEqual(-2);
     expect(data.deltaY).toEqual(2);
@@ -15,10 +16,11 @@ describe("calculatePosition", () => {
     expect(data.duration > 0).toBe(true);
   });
 
-  it("should return expected data if next position is greater", () => {
-    const nextPos = { x: 101, y: 100 };
+  it('should return expected data if next position is greater', () => {
+    const directionDelta = 0;
+    const rotatePosition = { x: 101, y: 100 };
     const state = { x: 1, y: 0, start: 1, traceX: [], traceY: [], isSwiping: false };
-    const data = calculatePosition(state, nextPos);
+    const data = calculatePosition(state, { rotatePosition, directionDelta });
 
     expect(data.deltaX).toEqual(100);
     expect(data.deltaY).toEqual(-100);
@@ -26,13 +28,14 @@ describe("calculatePosition", () => {
     expect(data.absY).toEqual(100);
     expect(data.directionX).toBe('RIGHT');
     expect(data.directionY).toBe('BOTTOM');
-    expect(data.velocity.toFixed(5)).toBe("0.00000");
+    expect(data.velocity.toFixed(5)).toBe('0.00000');
   });
 
-  it("should return expected data if next position is equal", () => {
-    const nextPos = { x: -100, y: 0 };
+  it('should return expected data if next position is equal', () => {
+    const directionDelta = 0;
+    const rotatePosition = { x: -100, y: 0 };
     const state = { x: 0, y: 0, start: 0, traceX: [], traceY: [], isSwiping: false };
-    const data = calculatePosition(state, nextPos);
+    const data = calculatePosition(state, { rotatePosition, directionDelta });
 
     expect(data.deltaX).toEqual(-100);
     expect(data.deltaY).toEqual(0);

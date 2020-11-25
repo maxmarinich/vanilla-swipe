@@ -22,6 +22,7 @@ describe('VanillaSwipe: update', function() {
       touchTrackingEnabled: false,
       mouseTrackingEnabled: true,
       delta: 100,
+      directionDelta: 0,
       rotationAngle: 10,
       preventDefaultTouchmoveEvent: true,
       preventTrackingOnMouseleave: false,
