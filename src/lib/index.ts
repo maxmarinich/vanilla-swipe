@@ -112,7 +112,6 @@ export default class VanillaSwipe {
 
   getEventData(e: TouchEvent | MouseEvent, options = { directionDelta: 0 }) {
     const { rotationAngle } = this.props;
-    const { traceX, traceY } = this.state;
     const { directionDelta } = options;
     const movingPosition = Utils.calculateMovingPosition(e);
     const rotatePosition = Utils.rotateByAngle(movingPosition, rotationAngle);
