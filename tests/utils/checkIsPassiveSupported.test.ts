@@ -1,8 +1,8 @@
 import { checkIsPassiveSupported, noop } from '../../src/lib/utils';
 
 describe('checkIsPassiveSupported', () => {
-  it('should return expected data if no params', () => {
-    expect(checkIsPassiveSupported()).toEqual(false);
+  it('should return expected data if window env', () => {
+    expect(checkIsPassiveSupported()).toEqual(true);
   });
 
   it('should return expected data if PassiveEvent not support', () => {
