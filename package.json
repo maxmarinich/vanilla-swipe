@@ -14,7 +14,6 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src/lib --out-dir lib --extensions \".ts,.tsx\"",
     "build:static": "rimraf lib static && webpack -p",
-    "prepare": "npm run build:lib",
     "postpublish": "git push --tags",
     "start": "webpack-dev-server --hot",
     "version:major": "npm version major",
