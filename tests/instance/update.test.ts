@@ -19,6 +19,7 @@ describe('VanillaSwipe: update', function() {
 
     expect(VanillaSwipe.props).toEqual({
       element,
+      target: null,
       touchTrackingEnabled: false,
       mouseTrackingEnabled: true,
       delta: 100,

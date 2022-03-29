@@ -7,6 +7,7 @@ export * from "./calculateTraceDirections";
 export * from "./calculateVelocity";
 export * from "./checkIsMoreThanSingleTouches";
 export * from "./checkIsPassiveSupported";
+export * from "./checkIsTouchEventsSupported";
 export * from "./common";
 export * from "./createOptions";
 export * from "./getInitialState";
