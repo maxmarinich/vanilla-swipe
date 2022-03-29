@@ -3,6 +3,7 @@ import { getInitialProps } from '../../src/lib/utils';
 describe('getInitialProps', () => {
   const defaultProps = {
     element: null,
+    target: null,
     delta: 10,
     directionDelta: 0,
     rotationAngle: 0,
