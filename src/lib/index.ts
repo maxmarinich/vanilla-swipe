@@ -6,6 +6,10 @@ export default class VanillaSwipe {
   state: State;
   props: ConstructorProps;
 
+  static isTouchEventsSupported() {
+    return Utils.checkIsTouchEventsSupported();
+  }
+
   constructor(props: ConstructorProps) {
     this.state = Utils.getInitialState();
     this.props = Utils.getInitialProps(props);

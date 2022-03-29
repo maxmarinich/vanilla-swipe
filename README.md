@@ -64,6 +64,7 @@ type EventData = {
 - `init(): void`
 - `update(options: ConstructorProps): void`
 - `destroy(): void`
+- static `isTouchEventsSupported(): boolean`
 
 ### _Install_
 
@@ -75,6 +76,8 @@ npm install vanilla-swipe
 
 ```js
 import VanillaSwipe from 'vanilla-swipe';
+
+const isTouchEventsSupported = VanillaSwipe.isTouchEventsSupported();
 
 const VS = new VanillaSwipe({
   element: document.getElementById('some-id'),
