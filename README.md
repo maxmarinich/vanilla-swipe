@@ -6,7 +6,7 @@ Tiny vanilla JS library to detect swipe direction.
 [![npm version](https://badge.fury.io/js/vanilla-swipe.svg)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![covarage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
-#### 👉 Live [demo](https://maxmarinich.github.io/vanilla-swipe/static).
+#### 👉 Live [demo](https://maxmarinich.github.io/vanilla-swipe).
 
 ### Types
 

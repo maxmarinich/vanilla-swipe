@@ -7,6 +7,7 @@ const config = {
   ],
   output: {
     path: __dirname + '/static/',
+    filename: 'main.[hash].js'
   },
   module: {
     rules: [
