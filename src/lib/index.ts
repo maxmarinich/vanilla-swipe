@@ -143,7 +143,10 @@ export default class VanillaSwipe {
 
     if (!x || !y || Utils.checkIsMoreThanSingleTouches(e)) return;
 
-    const { absX, absY, deltaX, deltaY, directionX, directionY, duration, velocity } = this.getEventData(e);
+    const directionDelta = this.props.directionDelta || 0;
+    const { absX, absY, deltaX, deltaY, directionX, directionY, duration, velocity } = this.getEventData(e, {
+      directionDelta,
+    });
     const { delta, preventDefaultTouchmoveEvent, onSwipeStart, onSwiping } = this.props;
 
     if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();

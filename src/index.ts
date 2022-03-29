@@ -6,12 +6,14 @@ const element = document.getElementById('pad');
 const target = document.getElementById('stick');
 const shadow = document.getElementById('shadow');
 const info = document.getElementById('info');
-const state = { isSwipeStarted: false, delta: 15 }
+const resetBtn = document.getElementById('reset');
+const state = { isSwipeStarted: false, delta: 15, directionDelta: 15 };
 
 const VS = new VanillaSwipe({
   element,
   target,
   delta: state.delta,
+  directionDelta: state.directionDelta,
   mouseTrackingEnabled: true,
   preventTrackingOnMouseleave: true,
   preventDefaultTouchmoveEvent: true,
@@ -22,6 +24,11 @@ const VS = new VanillaSwipe({
 });
 
 VS.init();
+reset();
+
+if (resetBtn) {
+  resetBtn.onclick = reset;
+}
 
 function onTap(e: Event, data: EventData) {
   return handler(e, data, 'onTap');
@@ -63,8 +70,29 @@ function handler(e: Event, data: EventData, listener: string ) {
       DirectionY: ${directionY}
       Duration: ${duration}
       Velocity: ${velocity}
-      SwipeDelta: ${state.delta}px
+      Delta: ${state.delta}px
+      DirectionDelta: ${state.directionDelta}px
       SwipeStarted: ${state.isSwipeStarted}
+    `;
+  }
+}
+
+function reset() {
+  if (info) {
+    info.innerText = `
+        EventType: none
+        Listener: none
+        DeltaX: 0
+        DeltaY: 0
+        AbsX: 0
+        AbsY: 0
+        DirectionX: none
+        DirectionY: none
+        Duration: 0
+        Velocity: 0
+        Delta: ${state.delta}px
+        DirectionDelta: ${state.directionDelta}px
+        SwipeStarted: false
     `;
   }
 }
