@@ -13,7 +13,7 @@
     "build:lib": "rimraf lib && rimraf coverage && npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src/lib --out-dir lib --extensions \".ts,.tsx\"",
-    "build:static": "rimraf lib static && webpack -p",
+    "build:static": "rimraf lib static && webpack --mode=production",
     "prepare": "npm run build:lib",
     "postpublish": "git push --tags",
     "start": "webpack-dev-server --hot --mode=none",
