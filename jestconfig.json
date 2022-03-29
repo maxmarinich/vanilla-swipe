@@ -1,9 +1,0 @@
-{
-  "collectCoverage": false,
-  "collectCoverageFrom": ["src/lib/**/*.{ts,tsx}", "!<rootDir>tests/helpers/"],
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
-  },
-  "testMatch": ["**/?(*.)+(spec|test).[jt]s?(x)"],
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"]
-}
