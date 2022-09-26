@@ -1,7 +1,7 @@
 import { createOptions } from './createOptions';
 
 export function checkIsPassiveSupported(isPassiveSupported?: boolean) {
-  if ( typeof isPassiveSupported === 'boolean') {
+  if (typeof isPassiveSupported === 'boolean') {
     return isPassiveSupported;
   }
 

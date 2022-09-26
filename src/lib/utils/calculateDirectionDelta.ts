@@ -1,5 +1,5 @@
 import { TraceDirection, TraceDirectionKey } from '../types';
-import { getDirectionKey, getDirectionValue, getDifference } from '.';
+import { getDirectionKey, getDirectionValue, getDifference } from './common';
 
 export function calculateDirectionDelta(traceDirections: TraceDirection[], delta = 0) {
   const { length } = traceDirections;

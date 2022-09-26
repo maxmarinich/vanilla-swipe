@@ -1,4 +1,7 @@
-import * as Utils from '.';
+import { updateTrace } from './updateTrace';
+import { resolveDirection } from './resolveDirection';
+import { calculateDuration } from './calculateDuration';
+import { calculateVelocity } from './calculateVelocity';
 import { Axis, EventData, State } from '../types';
 
 export function calculatePosition(state: State, options: Options): EventData {
@@ -10,13 +13,13 @@ export function calculatePosition(state: State, options: Options): EventData {
   const absX = Math.abs(deltaX);
   const absY = Math.abs(deltaY);
 
-  Utils.updateTrace(traceX, deltaX);
-  Utils.updateTrace(traceY, deltaY);
+  updateTrace(traceX, deltaX);
+  updateTrace(traceY, deltaY);
 
-  const directionX = Utils.resolveDirection(traceX, Axis.X, directionDelta);
-  const directionY = Utils.resolveDirection(traceY, Axis.Y, directionDelta);
-  const duration = Utils.calculateDuration(start, Date.now());
-  const velocity = Utils.calculateVelocity(absX, absY, duration);
+  const directionX = resolveDirection(traceX, Axis.X, directionDelta);
+  const directionY = resolveDirection(traceY, Axis.Y, directionDelta);
+  const duration = calculateDuration(start, Date.now());
+  const velocity = calculateVelocity(absX, absY, duration);
 
   return {
     absX,
