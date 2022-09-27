@@ -1,14 +1,17 @@
-import * as Utils from '.';
+import { calculateDirection } from './calculateDirection';
+import { calculateTraceDirections } from './calculateTraceDirections';
+import { calculateDirectionDelta } from './calculateDirectionDelta';
+import { resolveAxisDirection } from './common';
 import { Axis, Direction } from '../types';
 
 export function resolveDirection(trace: number[], axis: Axis = Axis.X, directionDelta = 0): Direction {
   if (directionDelta) {
-    const directions = Utils.calculateTraceDirections(trace);
-    const direction = Utils.calculateDirectionDelta(directions, directionDelta);
+    const directions = calculateTraceDirections(trace);
+    const direction = calculateDirectionDelta(directions, directionDelta);
 
-    return Utils.resolveAxisDirection(axis, direction);
+    return resolveAxisDirection(axis, direction);
   }
 
-  const direction = Utils.calculateDirection(trace);
-  return Utils.resolveAxisDirection(axis, direction);
+  const direction = calculateDirection(trace);
+  return resolveAxisDirection(axis, direction);
 }
