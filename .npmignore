@@ -63,3 +63,5 @@ webpack.config.js
 coverage
 static
 index.html
+.travis.yml
+.github
