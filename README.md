@@ -77,13 +77,13 @@ npm install vanilla-swipe
 ```js
 import VanillaSwipe from 'vanilla-swipe';
 
-const isTouchEventsSupported = VanillaSwipe.isTouchEventsSupported();
+const mouseTrackingEnabled = !VanillaSwipe.isTouchEventsSupported();
 
 const VS = new VanillaSwipe({
   element: document.getElementById('some-id'),
   onSwiping: handler,
   onSwiped: handler,
-  mouseTrackingEnabled: !isTouchEventsSupported,
+  mouseTrackingEnabled,
 });
 
 VS.init();
