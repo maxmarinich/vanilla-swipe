@@ -83,7 +83,7 @@ const VS = new VanillaSwipe({
   element: document.getElementById('some-id'),
   onSwiping: handler,
   onSwiped: handler,
-  mouseTrackingEnabled: true,
+  mouseTrackingEnabled: !isTouchEventsSupported,
 });
 
 VS.init();
